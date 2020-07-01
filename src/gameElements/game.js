@@ -1,13 +1,13 @@
-class Game() {
+class Game {
     currentLevelNumber = 0;
     level = null;
     player = null;
     hp = 100;
 
-    this.createLevel = () => {
+    createLevel = () => {
         console.log("createLevel");
     }
-    this.gameOver = () => {
+    gameOver = () => {
         console.log("GameOver");
     }
 }
