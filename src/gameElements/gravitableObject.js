@@ -1,6 +1,5 @@
 import GameObject from "./gameObject";
 
-
 class GravitableObject extends GameObject {
 
 }

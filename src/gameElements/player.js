@@ -1,7 +1,7 @@
 class Player {
     state;
 
-    activate = (level) => {
+    activate(level) {
     }
 }
 

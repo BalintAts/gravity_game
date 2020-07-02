@@ -1,10 +1,18 @@
 import React, { useRef, useEffect } from 'react'
+import Game from '../gameElements/game';
+import Level from '../gameElements/level';
 
 const GameCanvas = () => {
     const canvasRef = useRef(null);
     const contextRef = useRef(null);
 
     useEffect(() => {
+        let game = new Game();
+        game.createLevel();
+
+
+
+
         const canvas = canvasRef.current;
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
