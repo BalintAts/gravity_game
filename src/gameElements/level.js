@@ -5,7 +5,6 @@ class Level {
     gravitatableObjects;
     otherObjects;
 
-    //filling the gameoBjects with gameObjcts
     constructor(leveldata) {
         for (let data of leveldata.gravitableObjectsData) {
             this.gravitatableObjects.push(new GravitableObject(data));

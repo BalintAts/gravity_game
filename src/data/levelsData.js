@@ -1,6 +1,6 @@
 let levelsData = [{ gravitableObjectsData: [], otherObjectsData: [] },
-{ gravitableObjects: [], otherObjects: [] },
-{ gravitableObjects: [], otherObjects: [] },
-{ gravitableObjects: [], otherObjects: [] },]
+{ gravitableObjectsData: [], otherObjectsData: [] },
+{ gravitableObjectsData: [], otherObjectsData: [] },
+{ gravitableObjectsData: [], otherObjectsData: [] },]
 
 export default levelsData;
