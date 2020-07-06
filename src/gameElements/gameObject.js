@@ -1,4 +1,5 @@
 class GameObject {
+    canvas;
     posX;
     posY;
     rot;

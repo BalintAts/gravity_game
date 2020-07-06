@@ -1,6 +1,12 @@
-let levelsData = [{ gravitableObjectsData: [], otherObjectsData: [] },
-{ gravitableObjectsData: [], otherObjectsData: [] },
-{ gravitableObjectsData: [], otherObjectsData: [] },
-{ gravitableObjectsData: [], otherObjectsData: [] },]
+let levelsData =
+    [[{ x: 200, y: 300, radius: 30 },
+    { x: 800, y: 500, radius: 30 },
+    { x: 500, y: 500, radius: 30 },
+    { x: 100, y: 800, radius: 30 }],
+    [{}, {}, {}, {}],
+    [{}, {}, {}, {}],
+    [{}, {}, {}, {}],
+    [{}, {}, {}, {}],]
+
 
 export default levelsData;

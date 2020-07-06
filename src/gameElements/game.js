@@ -19,6 +19,8 @@ class Game {
         console.log("GameOver");
     }
 
+
+
     tick() {
 
     }
