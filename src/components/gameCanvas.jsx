@@ -3,6 +3,7 @@ import Game from '../gameElements/game';
 import Level from '../gameElements/level';
 import Player from '../gameElements/player';
 import GameObject from '../gameElements/gameObject';
+import levelsData from '../data/levelsData';
 
 
 const GameCanvas = () => {
@@ -30,6 +31,9 @@ const GameCanvas = () => {
         game.player = player;
 
         // for(gameOjects in level.gra)
+        for (let gameObjet in level.gameObjets) {
+            gameObjet.draw();
+        }
 
 
         function loop() {
