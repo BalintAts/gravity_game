@@ -1,17 +1,15 @@
 import GravitableObject from "./gravitableObject";
 import OtherObject from "./otherObject";
+import GameObject from "./gameObject";
+
 import levelsData from "../data/levelsData";
 
 class Level {
-    gravitatableObjects;
-    otherObjects;
+    gameObjects;
 
-    constructor() {
-        for (let data of levelsData.gravitableObjectsData) {
-            this.gravitatableObjects.push(new GravitableObject(data));
-        }
-        for (let data of levelsData.otherObjectsData) {
-            this.otherObjects.push(new OtherObject(data));
+    constructor(currentLevelNumber) {
+        for (let data of levelsData[currentLevelNumber]) {
+            this.gameObjects.push(new GameObject(data));
         }
     }
 }
