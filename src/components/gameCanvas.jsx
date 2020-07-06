@@ -26,19 +26,21 @@ const GameCanvas = () => {
 
         //setup game
         let game = new Game();
-        let level = game.createLevel()  //currentlevelnumber comres from game
-        let player = new Player(ctx, level);
+        game.createLevel()  //currentlevelnumber comres from game
+        let player = new Player(ctx, game);
         game.player = player;
 
-        // for(gameOjects in level.gra)
-        for (let gameObjet in level.gameObjets) {
-            gameObjet.draw();
+
+        // draw level
+        for (let i = 0; i < game.level.gameObjects.length; i++) {
+            game.level.gameObjects[i].draw();
         }
 
-
+        //move and draw moving objects
         function loop() {
             console.log(loop);
             requestAnimationFrame(loop);
+            //move and draw the player
             player.move(game);
         }
 

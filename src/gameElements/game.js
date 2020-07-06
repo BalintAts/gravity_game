@@ -1,5 +1,5 @@
 import Level from "./level";
-import levelData from "../data/levelsData";
+import levelsData from "../data/levelsData";
 
 class Game {
     currentLevelNumber = 0;
@@ -12,7 +12,7 @@ class Game {
     }
 
     createLevel() {
-        this.level = new Level(levelData[this.currentLevelNumber]);
+        this.level = new Level(this.currentLevelNumber);
     }
 
     gameOver() {

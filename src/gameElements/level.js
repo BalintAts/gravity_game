@@ -5,7 +5,7 @@ import GameObject from "./gameObject";
 import levelsData from "../data/levelsData";
 
 class Level {
-    gameObjects;
+    gameObjects = [];
 
     constructor(currentLevelNumber) {
         for (let data of levelsData[currentLevelNumber]) {
