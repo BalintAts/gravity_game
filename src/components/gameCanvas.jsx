@@ -35,7 +35,7 @@ const GameCanvas = () => {
             game.level.gameObjects[i].game = game;
         }
 
-        let player = new Player(200, 200, 100);
+        let player = new Player(400, 400, 200);
         game.player = player;
         player.game = game;
         player.ctx = ctx;
@@ -46,14 +46,17 @@ const GameCanvas = () => {
         }
 
 
+
+
         //move and draw moving objects
         function loop() {
             console.log(loop);
             requestAnimationFrame(loop);
             //move and draw the player
             player.move(game);
-            player.posX++;
             player.draw("red");
+            player.posX++;
+            // player.draw("red");
             console.log(player);
 
         }

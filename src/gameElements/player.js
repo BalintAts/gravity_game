@@ -38,8 +38,8 @@ class Player {
         //game.level....
         this.ctx.fillStyle = color;
         this.ctx.beginPath();
-        // this.ctx.arc(super.posX, super.posY, super.rad, 0, Math.PI);
-        this.ctx.arc(250, 2250, 150, 0, Math.PI);
+        this.ctx.arc(this.posX, this.posY, this.rad, 0, Math.PI);
+        // this.ctx.arc(250, 250, 150, 0, Math.PI);
 
         this.ctx.fill();
 
