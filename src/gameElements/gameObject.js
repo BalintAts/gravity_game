@@ -1,7 +1,7 @@
 class GameObject {
     posX;
     posY;
-    size;
+    rad;
     rot;
     imgUri;
     levelRef;
@@ -11,15 +11,16 @@ class GameObject {
     constructor(x, y, rad) {
         this.posX = x;
         this.posY = y;
-        this.size = rad;
+        this.rad = rad;
     }
 
     draw() {
 
-        this.ctx.fillStyle = "ff0000";
+        this.ctx.fillStyle = "green";
         this.ctx.beginPath();
-        this.ctx.arc(this.posX, this.posY, this.rad, 0, Math.PI);
+        this.ctx.arc(this.posX, this.posY, this.rad, 0, 2 * Math.PI);
         this.ctx.fill();
+        console.log("drawn");
     }
 
 }
