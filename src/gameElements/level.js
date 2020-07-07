@@ -9,7 +9,7 @@ class Level {
 
     constructor(currentLevelNumber) {
         for (let data of levelsData[currentLevelNumber]) {
-            this.gameObjects.push(new GameObject(data));
+            this.gameObjects.push(new GameObject(data.x, data.y, data.radius));
         }
     }
 }

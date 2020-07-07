@@ -2,13 +2,11 @@ import GameObject from "./gameObject";
 
 class Player extends GameObject {
 
-    ctx;
-    game;
-
-    constructor(canvasContext, game) {
+    constructor(x, y, rad) {
         super();
-        this.ctx = canvasContext;
-        this.game = game;
+        super.posX = x;
+        super.posY = y;
+        super.rad = rad;
     }
 
     states = {
@@ -24,13 +22,15 @@ class Player extends GameObject {
 
     draw() {
         //game.level....
+        this.ctx.fillStyle = "ff0000";
         this.ctx.beginPath();
-        this.ctx.arc(200, 500, 100, 0, Math.PI);
-        this.ctx.stroke();
+        this.ctx.arc(super.posX, super.posY, super.rad, 0, Math.PI);
+        this.ctx.fill();
+
     }
 
     move() {
-        this.draw();
+        //todo;
     }
 }
 

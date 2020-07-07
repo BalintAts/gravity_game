@@ -27,14 +27,21 @@ const GameCanvas = () => {
         //setup game
         let game = new Game();
         game.createLevel()  //currentlevelnumber comres from game
-        let player = new Player(ctx, game);
-        game.player = player;
 
 
-        // draw level
+        //shoud refactor for dependency injection
         for (let i = 0; i < game.level.gameObjects.length; i++) {
-            game.level.gameObjects[i].draw();
+            game.level.gameObjects[i].ctx = ctx;
+            game.level.gameObjects[i].game = game;
         }
+
+        let player = new Player(200, 200, 100);
+        game.player = player;
+        player.game = game;
+        player.ctx = ctx;
+
+
+
 
         //move and draw moving objects
         function loop() {
@@ -42,6 +49,11 @@ const GameCanvas = () => {
             requestAnimationFrame(loop);
             //move and draw the player
             player.move(game);
+            player.draw();
+            // draw level
+            for (let i = 0; i < game.level.gameObjects.length; i++) {
+                game.level.gameObjects[i].draw();
+            }
         }
 
         loop();
