@@ -11,14 +11,14 @@ import GameObject from "./gameObject";
 
 class Player {
 
-    posX;
-    posX;
-    rad;
-
     constructor(posX, posY, rad) {
         this.posX = posX;
         this.posY = posY;
         this.rad = rad;
+
+        // super.posX = posX;
+        // super.posY = posY;
+        // super.rad = rad;
     }
 
     states = {
@@ -34,14 +34,15 @@ class Player {
     activate(level) {
     }
 
-    draw(color) {
+    draw() {
         //game.level....
-        this.ctx.fillStyle = color;
+        this.ctx.save();
+        this.ctx.fillStyle = "red";
         this.ctx.beginPath();
-        this.ctx.arc(this.posX, this.posY, this.rad, 0, Math.PI);
-        // this.ctx.arc(250, 250, 150, 0, Math.PI);
-
+        this.ctx.arc(this.posX, this.posY, this.rad, 0, 2 * Math.PI);
+        // this.ctx.arc(super.posX, super.posY, super.rad, 0, Math.PI);
         this.ctx.fill();
+        this.ctx.restore();
 
     }
 

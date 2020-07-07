@@ -54,7 +54,7 @@ const GameCanvas = () => {
             requestAnimationFrame(loop);
             //move and draw the player
             player.move(game);
-            player.draw("red");
+            player.draw();
             player.posX++;
             // player.draw("red");
             console.log(player);

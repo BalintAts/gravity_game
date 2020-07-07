@@ -1,12 +1,4 @@
 class GameObject {
-    posX;
-    posY;
-    rad;
-    rot;
-    imgUri;
-    levelRef;
-    game;
-    ctx;
 
     constructor(x, y, rad) {
         this.posX = x;

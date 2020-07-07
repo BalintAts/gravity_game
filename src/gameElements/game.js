@@ -2,9 +2,8 @@ import Level from "./level";
 import levelsData from "../data/levelsData";
 
 class Game {
+
     currentLevelNumber = 0;
-    level;
-    player;
     hp = 100;
 
     constructor() {
