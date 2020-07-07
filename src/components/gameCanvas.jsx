@@ -21,8 +21,7 @@ const GameCanvas = () => {
         canvas.style.width = `${window.innerWidth}px`;
         canvas.style.height = `${window.innerHeight}px`;
         const ctx = canvas.getContext("2d");
-        // ctx.fillStyle = "blue";
-        // ctx.fillRect(0, 0, canvas.width, canvas.height);
+
 
         //setup game
         let game = new Game();
@@ -35,15 +34,13 @@ const GameCanvas = () => {
             game.level.gameObjects[i].game = game;
         }
 
-        let player = new Player(400, 400, 200);
+        let player = new Player(400, 400);
         game.player = player;
         player.game = game;
         player.ctx = ctx;
 
         // draw level
-        for (let i = 0; i < game.level.gameObjects.length; i++) {
-            game.level.gameObjects[i].draw();
-        }
+
 
 
 
@@ -51,13 +48,18 @@ const GameCanvas = () => {
         //move and draw moving objects
         function loop() {
             console.log(loop);
-            requestAnimationFrame(loop);
+            ctx.fillStyle = "#6666ff";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < game.level.gameObjects.length; i++) {
+                game.level.gameObjects[i].draw();
+            }
             //move and draw the player
             player.move(game);
             player.draw();
             player.posX++;
             // player.draw("red");
             console.log(player);
+            requestAnimationFrame(loop);
 
         }
 
