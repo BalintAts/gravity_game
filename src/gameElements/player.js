@@ -6,6 +6,7 @@ class Player {
     rad = 50; //this is always the same
     verticalSpeed = 0;
     horizontalSpeed = 0;
+    speedRatio = 10;
 
     states = {
         ATTRACT: 'attract',
@@ -45,8 +46,17 @@ class Player {
         let distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
         let direction = Math.atan(distanceY / distanceX);
         console.log({ direction });
-        this.posX = this.posX + Math.cos(direction);
-        this.posY = this.posY + Math.sin(direction);
+
+
+        let AccMagnitude = this.game.level.gameObjects[1].rad / (distance * distance);    //radius is in ratio with mass, player's mass = 1
+
+        this.horizontalSpeed += AccMagnitude * Math.cos(direction);
+        this.verticalSpeed += AccMagnitude * Math.sin(direction);
+
+        this.posX += this.horizontalSpeed * this.speedRatio;
+        this.posY += this.verticalSpeed * this.speedRatio;
+
+        console.log([this.posX, this.posY]);
 
     }
 }
