@@ -34,7 +34,7 @@ const GameCanvas = () => {
             game.level.gameObjects[i].game = game;
         }
 
-        let player = new Player(400, 400, game);
+        let player = new Player(800, 400, game);
         game.player = player;
         player.ctx = ctx;
 

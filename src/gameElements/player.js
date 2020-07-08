@@ -41,23 +41,29 @@ class Player {
         //     let direction = Math.atan(distanceY / distanceX);
 
         // }
-        let distanceX = this.game.level.gameObjects[1].posX - this.posX;
-        let distanceY = this.game.level.gameObjects[1].posY - this.posY;
-        let distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
-        let direction = Math.atan(distanceY / distanceX);
-        console.log({ direction });
+        for (let gravitable of this.game.level.gameObjects) {
+            // let distanceX = this.game.level.gameObjects[1].posX - this.posX;
+            // let distanceY = this.game.level.gameObjects[1].posY - this.posY;
 
+            let distanceX = gravitable.posX - this.posX;
+            let distanceY = gravitable.posY - this.posY;
 
-        let AccMagnitude = this.game.level.gameObjects[1].rad / (distance * distance);    //radius is in ratio with mass, player's mass = 1
+            let distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
+            let direction = Math.atan(distanceY / distanceX) + Math.PI;
+            console.log({ distance });
 
-        this.horizontalSpeed += AccMagnitude * Math.cos(direction);
-        this.verticalSpeed += AccMagnitude * Math.sin(direction);
+            // let AccMagnitude = this.game.level.gameObjects[1].rad / (distance * distance);    //radius is in ratio with mass, player's mass = 1
+            let AccMagnitude = gravitable.rad / (distance * distance);    //radius is in ratio with mass, player's mass = 1
 
-        this.posX += this.horizontalSpeed * this.speedRatio;
-        this.posY += this.verticalSpeed * this.speedRatio;
+            if (distance > 200) {
+                this.horizontalSpeed += AccMagnitude * Math.cos(direction);
+                this.verticalSpeed += AccMagnitude * Math.sin(direction);
+            }
 
-        console.log([this.posX, this.posY]);
-
+            this.posX += this.horizontalSpeed * this.speedRatio;
+            this.posY += this.verticalSpeed * this.speedRatio;
+            direction = 0;
+        }
     }
 }
 
