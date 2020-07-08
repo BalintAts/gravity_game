@@ -12,15 +12,15 @@ const GameCanvas = () => {
 
     useEffect(() => {
 
-
-
         //set up the canvas
         const canvas = canvasRef.current;
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         canvas.style.width = `${window.innerWidth}px`;
         canvas.style.height = `${window.innerHeight}px`;
+
         const ctx = canvas.getContext("2d");
+
 
 
         //setup game
@@ -34,9 +34,8 @@ const GameCanvas = () => {
             game.level.gameObjects[i].game = game;
         }
 
-        let player = new Player(400, 400);
+        let player = new Player(400, 400, game);
         game.player = player;
-        player.game = game;
         player.ctx = ctx;
 
         // draw level
@@ -54,11 +53,10 @@ const GameCanvas = () => {
                 game.level.gameObjects[i].draw();
             }
             //move and draw the player
-            player.move(game);
+            player.move();
             player.draw();
-            player.posX++;
             // player.draw("red");
-            console.log(player);
+            // console.log(player);
             requestAnimationFrame(loop);
 
         }
@@ -68,10 +66,12 @@ const GameCanvas = () => {
 
     }, [])
 
+    const handleKeyDown = e => { console.log(e) };
+    const handleKeyUp = e => { console.log(e) };
 
 
     return (
-        <div>
+        <div onKeyDown={handleKeyDown} onKeyUp={handleKeyUp}>
             <canvas ref={canvasRef} />
         </div>
     )

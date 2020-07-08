@@ -3,6 +3,7 @@ import levelsData from "../data/levelsData";
 
 class Game {
 
+    level;
     currentLevelNumber = 0;
     hp = 100;
 
