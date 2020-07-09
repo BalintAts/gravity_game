@@ -12,7 +12,7 @@ class GameObject {
         this.ctx.beginPath();
         this.ctx.arc(this.posX, this.posY, this.rad, 0, 2 * Math.PI);
         this.ctx.fill();
-        console.log("drawn");
+        // console.log("drawn");
     }
 
 }

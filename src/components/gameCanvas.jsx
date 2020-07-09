@@ -44,9 +44,10 @@ const GameCanvas = () => {
 
 
 
+
         //move and draw moving objects
         function loop() {
-            console.log(loop);
+            // console.log(loop);
             ctx.fillStyle = "#6666ff";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             for (let i = 0; i < game.level.gameObjects.length; i++) {
@@ -66,12 +67,12 @@ const GameCanvas = () => {
 
     }, [])
 
-    const handleKeyDown = e => { console.log(e) };
-    const handleKeyUp = e => { console.log(e) };
+    const handleKeyDown = e => { console.log("fdgksdj") };
+    const handleKeyUp = e => { console.log("dsflkjl") };
 
 
     return (
-        <div onKeyDown={handleKeyDown} onKeyUp={handleKeyUp}>
+        <div id="controlField" tabIndex="0" onKeyDown={handleKeyDown} onKeyUp={handleKeyUp}>
             <canvas ref={canvasRef} />
         </div>
     )

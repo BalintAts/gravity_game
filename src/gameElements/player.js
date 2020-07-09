@@ -24,6 +24,8 @@ class Player {
     activate(level) {
     }
 
+
+
     draw() {
         this.ctx.save();
         this.ctx.fillStyle = "red";
@@ -49,8 +51,8 @@ class Player {
             let distanceY = gravitable.posY - this.posY;
 
             let distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
-            let direction = Math.atan(distanceY / distanceX) + Math.PI;
-            console.log({ distance });
+            let direction = Math.atan(distanceY / distanceX);
+            // console.log({ distance });
 
             // let AccMagnitude = this.game.level.gameObjects[1].rad / (distance * distance);    //radius is in ratio with mass, player's mass = 1
             let AccMagnitude = gravitable.rad / (distance * distance);    //radius is in ratio with mass, player's mass = 1
