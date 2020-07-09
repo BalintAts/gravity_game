@@ -51,7 +51,7 @@ class Player {
             // console.log({ distance });
 
             // let AccMagnitude = this.game.level.gameObjects[1].rad / (distance * distance);    //radius is in ratio with mass, player's mass = 1
-            let AccMagnitude = gravitable.rad / (distance * distance);    //radius is in ratio with mass, player's mass = 1
+            let AccMagnitude = this.state * gravitable.rad / (distance * distance);    //radius is in ratio with mass, player's mass = 1
 
             if (distance > 200) {
                 this.horizontalSpeed += AccMagnitude * Math.cos(direction);
