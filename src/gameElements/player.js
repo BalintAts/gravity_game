@@ -31,6 +31,10 @@ class Player {
         this.ctx.restore();
     }
 
+    checkCollectable() {
+
+    }
+
     move() {
         // for (let i; i < this.game.level.gameObjects; i++) {
         //     let distanceX = this.game.level.gameObjects[i].posX - this.posX;
@@ -39,21 +43,24 @@ class Player {
         //     let direction = Math.atan(distanceY / distanceX);
 
         // }
-        for (let gravitable of this.game.level.gameObjects) {
+
+
+        this.checkCollectable();
+        for (let levelObject of this.game.level.gameObjects) {
             // let distanceX = this.game.level.gameObjects[1].posX - this.posX;
             // let distanceY = this.game.level.gameObjects[1].posY - this.posY;
 
-            let distanceX = gravitable.posX - this.posX;
-            let distanceY = gravitable.posY - this.posY;
+            let distanceX = levelObject.posX - this.posX;
+            let distanceY = levelObject.posY - this.posY;
 
             let distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
             let direction = Math.atan(distanceY / distanceX);
             // console.log({ distance });
 
             // let AccMagnitude = this.game.level.gameObjects[1].rad / (distance * distance);    //radius is in ratio with mass, player's mass = 1
-            let AccMagnitude = this.state * gravitable.rad / (distance * distance);    //radius is in ratio with mass, player's mass = 1
+            let AccMagnitude = this.state * levelObject.rad / (distance * distance);    //radius is in ratio with mass, player's mass = 1
 
-            if (distance > 20) {   //the condition avoids quantum
+            if (distance > 20 || levelObject.gravitable) {   //the condition avoids quantum
                 this.horizontalSpeed += AccMagnitude * Math.cos(direction);
                 this.verticalSpeed += AccMagnitude * Math.sin(direction);
             }
@@ -61,8 +68,8 @@ class Player {
             this.posX += this.horizontalSpeed * this.speedRatio;
             this.posY += this.verticalSpeed * this.speedRatio;
             direction = 0;
-            console.log(this.posX);
-            console.log(this.posY);
+            // console.log(this.posX);
+            // console.log(this.posY);
 
         }
 
