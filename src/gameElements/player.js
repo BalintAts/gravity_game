@@ -8,12 +8,8 @@ class Player {
     horizontalSpeed = 0;
     speedRatio = 10;
 
-    states = {
-        ATTRACT: 'attract',
-        REPELL: 'repell',
-        OFF: 'off',
-    }
-    state = this.states.OFF;
+
+    state = 0;
 
     constructor(posX, posY, game) {
         this.posX = posX;

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import Game from '../gameElements/game';
 import Level from '../gameElements/level';
 import Player from '../gameElements/player';
@@ -9,6 +9,8 @@ import levelsData from '../data/levelsData';
 const GameCanvas = () => {
     const canvasRef = useRef(null);
     const contextRef = useRef(null);
+    // const gameRef = useRef(null);
+    const [gameState, setGameState] = useState(null);
 
     useEffect(() => {
 
@@ -25,6 +27,7 @@ const GameCanvas = () => {
 
         //setup game
         let game = new Game();
+        setGameState(game);
         game.createLevel()  //currentlevelnumber comres from game
 
 
@@ -34,9 +37,8 @@ const GameCanvas = () => {
             game.level.gameObjects[i].game = game;
         }
 
-        let player = new Player(800, 400, game);
-        game.player = player;
-        player.ctx = ctx;
+        game.player = new Player(800, 400, game);
+        game.player.ctx = ctx;
 
         // draw level
 
@@ -54,8 +56,8 @@ const GameCanvas = () => {
                 game.level.gameObjects[i].draw();
             }
             //move and draw the player
-            player.move();
-            player.draw();
+            game.player.move();
+            game.player.draw();
             // player.draw("red");
             // console.log(player);
             requestAnimationFrame(loop);
@@ -67,8 +69,13 @@ const GameCanvas = () => {
 
     }, [])
 
-    const handleKeyDown = e => { console.log("fdgksdj") };
-    const handleKeyUp = e => { console.log("dsflkjl") };
+    const handleKeyDown = e => {
+        gameState.player.state = 1;
+        console.log("ondown")
+    };
+    const handleKeyUp = e => {
+        console.log("onup")
+    };
 
 
     return (
