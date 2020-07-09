@@ -72,18 +72,18 @@ const GameCanvas = () => {
     const handleKeyDown = e => {
         if (e.keyCode === 38) {
             gameState.player.state = 1;
-            console.log("Gravondown");
+            // console.log("Gravondown");
             console.log(gameState.player.state);
         }
         if (e.keyCode === 40) {
             gameState.player.state = -1;
-            console.log("Repellondown")
+            // console.log("Repellondown")
             console.log(gameState.player.state);
         }
     };
     const handleKeyUp = e => {
         gameState.player.state = 0;
-        console.log("onup")
+        // console.log("onup")
         console.log(gameState.player.state);
 
     };

@@ -11,7 +11,7 @@ class GameObject {
     }
 
     draw() {
-        console.log(this.visible);
+        // console.log(this.visible);
         if (this.visible === true) {
             this.ctx.fillStyle = this.color;
             this.ctx.beginPath();
