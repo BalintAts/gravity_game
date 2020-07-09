@@ -53,7 +53,7 @@ class Player {
             // let AccMagnitude = this.game.level.gameObjects[1].rad / (distance * distance);    //radius is in ratio with mass, player's mass = 1
             let AccMagnitude = this.state * gravitable.rad / (distance * distance);    //radius is in ratio with mass, player's mass = 1
 
-            if (distance > 200) {
+            if (distance > 20) {   //the condition avoids quantum
                 this.horizontalSpeed += AccMagnitude * Math.cos(direction);
                 this.verticalSpeed += AccMagnitude * Math.sin(direction);
             }
@@ -61,7 +61,12 @@ class Player {
             this.posX += this.horizontalSpeed * this.speedRatio;
             this.posY += this.verticalSpeed * this.speedRatio;
             direction = 0;
+            console.log(this.posX);
+            console.log(this.posY);
+
         }
+
+
     }
 }
 
