@@ -23,7 +23,7 @@ function App() {
         </a>
       </header> */}
       <GameCanvas />
-      <Menu />
+      {/* <Menu /> */}
     </div>
   );
 }

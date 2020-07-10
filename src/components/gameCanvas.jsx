@@ -51,7 +51,7 @@ const GameCanvas = () => {
             ctx.font = "30px Arial";
             ctx.fillText(` LIVES:  ${game.player.lives}`, 10, 50);
             ctx.fillText(` LEVEL: ${game.currentLevelNumber + 1}`, 10, 90);
-            ctx.fillText("Press K to attrackt, M to repell!", 200, 50);
+            ctx.fillText("Press Space to Gravitate!", 200, 50);
 
 
             for (let i = 0; i < game.level.gameObjects.length; i++) {
@@ -69,12 +69,12 @@ const GameCanvas = () => {
     }, [])
 
     const handleKeyDown = e => {
-        if (e.keyCode === 75) {
+        if (e.keyCode === 32) {
             gameState.player.state = 1;
         }
-        if (e.keyCode === 77) {
-            gameState.player.state = -1;
-        }
+        // if (e.keyCode === 77) {
+        //     gameState.player.state = -1;
+        // }
     };
     const handleKeyUp = e => {
         gameState.player.state = 0;
