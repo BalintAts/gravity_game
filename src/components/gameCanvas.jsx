@@ -82,13 +82,17 @@ const GameCanvas = () => {
 
     };
 
+    const openMenu = () => {
+
+    };
+
 
     return (
         <>
             <div tabIndex="0" onKeyDown={handleKeyDown} onKeyUp={handleKeyUp}>
                 <canvas id="viewport" ref={canvasRef} />
             </div>
-            <button style={{ top: 0, right: 0, position: "absolute" }} >Logout</button>
+            <button onClick={openMenu} style={{ top: 0, right: 0, position: "absolute" }} >Menu</button>
         </>
     )
 }
