@@ -31,7 +31,11 @@ class Player {
         this.ctx.restore();
     }
 
-    checkCollectable() {
+    checkCollectable(levelObject, distance) {
+        if (distance < this.rad + levelObject.rad && levelObject.collectable === true) {
+            levelObject.visible = false;
+        }
+
 
     }
 
@@ -45,7 +49,7 @@ class Player {
         // }
 
 
-        this.checkCollectable();
+
         for (let levelObject of this.game.level.gameObjects) {
             // let distanceX = this.game.level.gameObjects[1].posX - this.posX;
             // let distanceY = this.game.level.gameObjects[1].posY - this.posY;
@@ -55,6 +59,8 @@ class Player {
 
             let distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
             let direction = Math.atan(distanceY / distanceX);
+
+            this.checkCollectable(levelObject, distance);
 
             // let AccMagnitude = this.game.level.gameObjects[1].rad / (distance * distance);    //radius is in ratio with mass, player's mass = 1
             let AccMagnitude = this.state * levelObject.rad / (distance * distance);    //radius is in ratio with mass, player's mass = 1

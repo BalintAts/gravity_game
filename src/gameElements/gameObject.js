@@ -1,5 +1,6 @@
 class GameObject {
 
+
     constructor(x, y, rad, mass, gravitable, collectable, color, visible) {
         this.posX = x;
         this.posY = y;

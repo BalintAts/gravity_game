@@ -40,14 +40,7 @@ const GameCanvas = () => {
         game.player = new Player(800, 400, game);
         game.player.ctx = ctx;
 
-        // draw level
 
-
-
-
-
-
-        //move and draw moving objects
         function loop() {
             // console.log(loop);
             ctx.fillStyle = "#6666ff";
