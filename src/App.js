@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import GameCanvas from './components/gameCanvas';
+import Menu from './components/menu';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         </a>
       </header> */}
       <GameCanvas />
+      <Menu />
     </div>
   );
 }
