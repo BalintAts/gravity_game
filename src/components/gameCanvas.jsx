@@ -42,13 +42,22 @@ const GameCanvas = () => {
 
 
         function loop() {
+            game.player.move();
+
             ctx.fillStyle = "#6666ff";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "white";
+            ctx.font = "30px Arial";
+            ctx.fillText(` LIVES:  ${game.player.lives}`, 10, 50);
+            ctx.fillText(` LEVEL: ${game.currentLevelNumber + 1}`, 10, 90);
+            ctx.fillText("Press K to attrackt, M to repell!", 200, 50);
+
+
             for (let i = 0; i < game.level.gameObjects.length; i++) {
                 game.level.gameObjects[i].draw();
             }
             //move and draw the player
-            game.player.move();
             game.player.draw();
             requestAnimationFrame(loop);
 
@@ -75,9 +84,12 @@ const GameCanvas = () => {
 
 
     return (
-        <div id="controlField" tabIndex="0" onKeyDown={handleKeyDown} onKeyUp={handleKeyUp}>
-            <canvas ref={canvasRef} />
-        </div>
+        <>
+            <div tabIndex="0" onKeyDown={handleKeyDown} onKeyUp={handleKeyUp}>
+                <canvas id="viewport" ref={canvasRef} />
+            </div>
+            <button style={{ top: 0, right: 0, position: "absolute" }} >Logout</button>
+        </>
     )
 }
 

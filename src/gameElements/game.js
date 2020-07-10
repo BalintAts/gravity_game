@@ -19,12 +19,6 @@ class Game {
         console.log("GameOver");
     }
 
-
-
-    tick() {
-
-    }
-
 }
 
 export default Game;
