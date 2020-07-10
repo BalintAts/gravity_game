@@ -9,16 +9,15 @@ class GameObject {
         this.collectable = collectable;
         this.color = color;
         this.visible = visible;
+        this.mass = mass;
     }
 
     draw() {
-        // console.log(this.visible);
         if (this.visible === true) {
             this.ctx.fillStyle = this.color;
             this.ctx.beginPath();
             this.ctx.arc(this.posX, this.posY, this.rad, 0, 2 * Math.PI);
             this.ctx.fill();
-            // console.log("drawn");
         }
     }
 

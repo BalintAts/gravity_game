@@ -31,18 +31,17 @@ const GameCanvas = () => {
         game.createLevel()  //currentlevelnumber comres from game
 
 
-        //shoud refactor for dependency injection
+        //shoud refactor for of loop
         for (let i = 0; i < game.level.gameObjects.length; i++) {
             game.level.gameObjects[i].ctx = ctx;
             game.level.gameObjects[i].game = game;
         }
 
-        game.player = new Player(800, 400, game);
+        game.player = new Player(200, 250, game);
         game.player.ctx = ctx;
 
 
         function loop() {
-            // console.log(loop);
             ctx.fillStyle = "#6666ff";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             for (let i = 0; i < game.level.gameObjects.length; i++) {
@@ -51,8 +50,6 @@ const GameCanvas = () => {
             //move and draw the player
             game.player.move();
             game.player.draw();
-            // player.draw("red");
-            // console.log(player);
             requestAnimationFrame(loop);
 
         }
@@ -65,18 +62,13 @@ const GameCanvas = () => {
     const handleKeyDown = e => {
         if (e.keyCode === 75) {
             gameState.player.state = 1;
-            // console.log("Gravondown");
-            console.log(gameState.player.state);
         }
         if (e.keyCode === 77) {
             gameState.player.state = -1;
-            // console.log("Repellondown")
-            console.log(gameState.player.state);
         }
     };
     const handleKeyUp = e => {
         gameState.player.state = 0;
-        // console.log("onup")
         console.log(gameState.player.state);
 
     };

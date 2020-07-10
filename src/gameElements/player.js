@@ -58,20 +58,28 @@ class Player {
             let distanceY = levelObject.posY - this.posY;
 
             let distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
+
             let direction = Math.atan(distanceY / distanceX);
 
             this.checkCollectable(levelObject, distance);
 
             // let AccMagnitude = this.game.level.gameObjects[1].rad / (distance * distance);    //radius is in ratio with mass, player's mass = 1
-            let AccMagnitude = this.state * levelObject.rad / (distance * distance);    //radius is in ratio with mass, player's mass = 1
 
-            console.log(levelObject.gravitable);
+            let AccMagnitude = this.state * levelObject.mass / (distance * distance);    //radius is in ratio with mass, player's mass = 1
+            if (this.posX > levelObject.posX) {
+                AccMagnitude *= -1
+            }
+
             if (levelObject.gravitable) {
                 if (distance > 20) {   //the condition avoids quantum
                     this.horizontalSpeed += AccMagnitude * Math.cos(direction);
                     this.verticalSpeed += AccMagnitude * Math.sin(direction);
                 }
             }
+            console.log({ distance });
+            console.log({ direction });
+            console.log({ AccMagnitude });
+
 
             this.posX += this.horizontalSpeed * this.speedRatio;
             this.posY += this.verticalSpeed * this.speedRatio;
