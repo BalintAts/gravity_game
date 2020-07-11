@@ -7,8 +7,9 @@ class Game {
     currentLevelNumber = 0;
     hp = 100;
 
-    constructor() {
-        console.log("Game created");
+    constructor(width, height) {
+        this.width = width;
+        this.height = height;
     }
 
     createLevel() {

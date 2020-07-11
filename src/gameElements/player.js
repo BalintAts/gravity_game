@@ -58,6 +58,15 @@ class Player {
 
             this.posX += this.horizontalSpeed * this.speedRatio;
             this.posY += this.verticalSpeed * this.speedRatio;
+
+            if (this.posX + this.rad > this.game.width || this.posX - this.rad <= 0) {
+                this.horizontalSpeed *= -1;
+            }
+            if (this.posY + this.rad > this.game.height || this.posY - this.rad <= 0) {
+                this.verticalSpeed *= -1;
+            }
+
+
         }
     }
 }

@@ -26,7 +26,7 @@ const GameCanvas = () => {
 
 
         //setup game
-        let game = new Game();
+        let game = new Game(canvas.width, canvas.height);
         setGameState(game);
         game.createLevel()  //currentlevelnumber comres from game
 
