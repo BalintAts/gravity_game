@@ -7,6 +7,10 @@ class Game {
     currentLevelNumber = 0;
     player;
 
+    start() {
+        this.createLevel();
+    }
+
 
     constructor(width, height) {
         this.width = width;

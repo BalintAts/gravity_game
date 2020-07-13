@@ -26,16 +26,17 @@ const GameCanvas = () => {
 
 
         //setup game
+
         let game = new Game(canvas.width, canvas.height);
         setGameState(game);
-        game.createLevel()  //currentlevelnumber comres from game
+        game.start();
 
 
         //shoud refactor for of loop
-        for (let i = 0; i < game.level.gameObjects.length; i++) {
-            game.level.gameObjects[i].ctx = ctx;
-            game.level.gameObjects[i].game = game;
-        }
+        // for (let i = 0; i < game.level.gameObjects.length; i++) {
+        //     game.level.gameObjects[i].ctx = ctx;
+        //     game.level.gameObjects[i].game = game;
+        // }
 
         game.player = new Player(200, 250, game);
         game.player.ctx = ctx;
@@ -56,7 +57,7 @@ const GameCanvas = () => {
 
 
             for (let i = 0; i < game.level.gameObjects.length; i++) {
-                game.level.gameObjects[i].draw();
+                game.level.gameObjects[i].draw(ctx);
             }
             //move and draw the player
             game.player.draw();

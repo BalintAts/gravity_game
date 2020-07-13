@@ -12,12 +12,18 @@ class GameObject {
         this.mass = mass;
     }
 
-    draw() {
+    draw(ctx) {
+        // if (this.visible === true) {
+        //     this.ctx.fillStyle = this.color;
+        //     this.ctx.beginPath();
+        //     this.ctx.arc(this.posX, this.posY, this.rad, 0, 2 * Math.PI);
+        //     this.ctx.fill();
+        // }
         if (this.visible === true) {
-            this.ctx.fillStyle = this.color;
-            this.ctx.beginPath();
-            this.ctx.arc(this.posX, this.posY, this.rad, 0, 2 * Math.PI);
-            this.ctx.fill();
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(this.posX, this.posY, this.rad, 0, 2 * Math.PI);
+            ctx.fill();
         }
     }
 
