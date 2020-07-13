@@ -51,6 +51,7 @@ const GameCanvas = () => {
             ctx.font = "30px Arial";
             ctx.fillText(` LIVES:  ${game.player.lives}`, 10, 50);
             ctx.fillText(` LEVEL: ${game.currentLevelNumber + 1}`, 10, 90);
+            ctx.fillText(` SCORE: ${game.player.score} / ${game.level.scoreToWin}`, 10, 130);
             ctx.fillText("Press Space to Gravitate!", 200, 50);
 
 

@@ -8,6 +8,7 @@ class Player {
     horizontalSpeed = 0;
     speedRatio = 10;
     lives = 3;
+    score = 0;
 
 
     state = 0;
@@ -28,8 +29,9 @@ class Player {
     }
 
     checkCollectable(levelObject, distance) {
-        if (distance < this.rad + levelObject.rad && levelObject.collectable === true) {
+        if (distance < this.rad + levelObject.rad && levelObject.collectable === true && levelObject.visible === true) {
             levelObject.visible = false;
+            this.score++;
         }
     }
 

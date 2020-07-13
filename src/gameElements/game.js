@@ -5,7 +5,6 @@ class Game {
 
     level;
     currentLevelNumber = 0;
-    hp = 100;
 
     constructor(width, height) {
         this.width = width;
