@@ -32,6 +32,7 @@ class Player {
         if (distance < this.rad + levelObject.rad && levelObject.collectable === true && levelObject.visible === true) {
             levelObject.visible = false;
             this.score++;
+            this.game.checkLevelCompleted();
         }
     }
 

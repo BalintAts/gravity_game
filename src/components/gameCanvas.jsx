@@ -66,6 +66,9 @@ const GameCanvas = () => {
         if (e.keyCode === 32) {
             gameState.player.state = 1;
         }
+        if (e.keyCode === 83) {
+            gameState.start();
+        }
         // if (e.keyCode === 77) {
         //     gameState.player.state = -1;
         // }

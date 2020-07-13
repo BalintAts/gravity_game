@@ -8,30 +8,32 @@ class Game {
     currentLevelNumber = 0;
     player;
 
-    start() {
-        this.createLevel();
-        this.player = new Player(200, 250, this);
-    }
-
-
     constructor(width, height) {
         this.width = width;
         this.height = height;
     }
 
+    start() {
+        this.createLevel();
+        this.player = new Player(200, 400, this);
+        this.currentLevelNumber = 0;
+    }
+
     createLevel() {
-        this.level = new Level(this.currentLevelNumber);
+        this.level = new Level(this.currentLevelNumber, this);
     }
 
     checkLevelCompleted() {
         if (this.player.score === this.level.scoreToWin) {
             this.levelCompleted();
+            console.log("levelCompleted");
         }
+        console.log("checkLevelCompleted");
     }
 
     levelCompleted() {
         this.currentLevelNumber++;
-        this.createLevel(this.currentLevelNumber);
+        this.createLevel();
     }
 
     gameOver() {
