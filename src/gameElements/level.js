@@ -18,10 +18,7 @@ class Level {
                 this.scoreToWin++;  //need to put in the levelData
             }
         }
-        this.game.player.posX = 200;
-        this.game.player.posY = 200;
-        this.game.player.horizontalSpeed = 0;
-        this.game.player.verticalSpeed = 0;
+
 
 
 
