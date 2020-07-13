@@ -5,6 +5,8 @@ class Game {
 
     level;
     currentLevelNumber = 0;
+    player;
+
 
     constructor(width, height) {
         this.width = width;
@@ -13,6 +15,17 @@ class Game {
 
     createLevel() {
         this.level = new Level(this.currentLevelNumber);
+    }
+
+    checkLevelCompleted() {
+        if (this.player.score === this.level.scoreToWin) {
+            this.levelCompleted();
+        }
+    }
+
+    levelCompleted() {
+        this.currentLevelNumber++;
+        this.createLevel(this.currentLevelNumber);
     }
 
     gameOver() {
