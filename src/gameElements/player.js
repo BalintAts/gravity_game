@@ -19,13 +19,13 @@ class Player {
         this.game = game;
     }
 
-    draw() {
-        this.ctx.save();
-        this.ctx.fillStyle = "red";
-        this.ctx.beginPath();
-        this.ctx.arc(this.posX, this.posY, this.rad, 0, 2 * Math.PI);
-        this.ctx.fill();
-        this.ctx.restore();
+    draw(ctx) {
+        ctx.save();
+        ctx.fillStyle = "red";
+        ctx.beginPath();
+        ctx.arc(this.posX, this.posY, this.rad, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.restore();
     }
 
     checkCollectable(levelObject, distance) {

@@ -1,5 +1,6 @@
 import Level from "./level";
 import levelsData from "../data/levelsData";
+import Player from "./player";
 
 class Game {
 
@@ -9,6 +10,7 @@ class Game {
 
     start() {
         this.createLevel();
+        this.player = new Player(200, 250, this);
     }
 
 

@@ -31,15 +31,7 @@ const GameCanvas = () => {
         setGameState(game);
         game.start();
 
-
-        //shoud refactor for of loop
-        // for (let i = 0; i < game.level.gameObjects.length; i++) {
-        //     game.level.gameObjects[i].ctx = ctx;
-        //     game.level.gameObjects[i].game = game;
-        // }
-
-        game.player = new Player(200, 250, game);
-        game.player.ctx = ctx;
+        // game.player.ctx = ctx;
 
 
         function loop() {
@@ -60,7 +52,7 @@ const GameCanvas = () => {
                 game.level.gameObjects[i].draw(ctx);
             }
             //move and draw the player
-            game.player.draw();
+            game.player.draw(ctx);
             requestAnimationFrame(loop);
 
         }
