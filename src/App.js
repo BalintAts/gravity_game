@@ -6,9 +6,7 @@ import Menu from './components/menu';
 
 function App() {
 
-  const openMenu = () => {
 
-  }
 
   return (
     <div className="App">
@@ -33,9 +31,7 @@ function App() {
 
 
       <GameCanvas />
-      <button style={{ top: 0, right: 0, position: "absolute" }} >Menu</button>
 
-      <Menu />
     </div>
   );
 }

@@ -43,7 +43,7 @@ class Player {
             let distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
             let direction = Math.atan(distanceY / distanceX);
 
-            // this.checkCollectable(levelObject, distance);
+            this.checkCollectable(levelObject, distance);
 
             let AccMagnitude = this.state * levelObject.mass / (distance * distance);    //radius is in ratio with mass, player's mass = 1
             if (this.posX > levelObject.posX) {

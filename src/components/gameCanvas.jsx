@@ -12,6 +12,11 @@ const GameCanvas = () => {
     const contextRef = useRef(null);
     // const gameRef = useRef(null);
     const [gameState, setGameState] = useState(null);
+    const [displayMenu, setDisplayMenu] = useState(false);
+
+    const openMenu = () => {
+        setDisplayMenu(true);
+    }
 
     useEffect(() => {
 
@@ -23,6 +28,8 @@ const GameCanvas = () => {
         canvas.style.height = `${window.innerHeight}px`;
 
         const ctx = canvas.getContext("2d");
+
+
 
 
 
@@ -78,7 +85,7 @@ const GameCanvas = () => {
 
     };
 
-    ;
+
 
 
     return (
@@ -86,6 +93,11 @@ const GameCanvas = () => {
             <div tabIndex="0" onKeyDown={handleKeyDown} onKeyUp={handleKeyUp}>
                 <canvas id="viewport" ref={canvasRef} />
             </div>
+            <button onClick={openMenu} style={{ top: 0, right: 0, position: "absolute" }} >Menu</button>
+            {displayMenu &&
+                <Menu />
+            }
+
 
         </>
     )
