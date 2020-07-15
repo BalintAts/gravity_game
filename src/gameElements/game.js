@@ -48,7 +48,6 @@ class Game {
     gameOver() {
         console.log("GameOver");
     }
-
 }
 
 export default Game;

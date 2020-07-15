@@ -9,8 +9,6 @@ class Player {
     speedRatio = 10;
     lives = 3;
     score = 0;
-
-
     state = 0;
 
     constructor(posX, posY, game) {
@@ -45,7 +43,7 @@ class Player {
             let distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
             let direction = Math.atan(distanceY / distanceX);
 
-            this.checkCollectable(levelObject, distance);
+            // this.checkCollectable(levelObject, distance);
 
             let AccMagnitude = this.state * levelObject.mass / (distance * distance);    //radius is in ratio with mass, player's mass = 1
             if (this.posX > levelObject.posX) {

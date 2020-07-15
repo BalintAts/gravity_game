@@ -4,6 +4,7 @@ import Level from '../gameElements/level';
 import Player from '../gameElements/player';
 import GameObject from '../gameElements/gameObject';
 import levelsData from '../data/levelsData';
+import Menu from './menu';
 
 
 const GameCanvas = () => {
@@ -35,10 +36,17 @@ const GameCanvas = () => {
 
 
         function loop() {
+
             game.player.move();
 
             ctx.fillStyle = "#6666ff";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < game.level.gameObjects.length; i++) {
+                game.level.gameObjects[i].draw(ctx);
+            }
+
+            game.player.draw(ctx);
 
             ctx.fillStyle = "white";
             ctx.font = "30px Arial";
@@ -47,12 +55,6 @@ const GameCanvas = () => {
             ctx.fillText(` SCORE: ${game.player.score} / ${game.level.scoreToWin}`, 10, 130);
             ctx.fillText("Press Space to Gravitate!", 200, 50);
 
-
-            for (let i = 0; i < game.level.gameObjects.length; i++) {
-                game.level.gameObjects[i].draw(ctx);
-            }
-            //move and draw the player
-            game.player.draw(ctx);
             requestAnimationFrame(loop);
 
         }
@@ -69,9 +71,6 @@ const GameCanvas = () => {
         if (e.keyCode === 83) {
             gameState.start();
         }
-        // if (e.keyCode === 77) {
-        //     gameState.player.state = -1;
-        // }
     };
     const handleKeyUp = e => {
         gameState.player.state = 0;
@@ -79,9 +78,7 @@ const GameCanvas = () => {
 
     };
 
-    const openMenu = () => {
-
-    };
+    ;
 
 
     return (
@@ -89,7 +86,7 @@ const GameCanvas = () => {
             <div tabIndex="0" onKeyDown={handleKeyDown} onKeyUp={handleKeyUp}>
                 <canvas id="viewport" ref={canvasRef} />
             </div>
-            <button onClick={openMenu} style={{ top: 0, right: 0, position: "absolute" }} >Menu</button>
+
         </>
     )
 }
