@@ -13,6 +13,8 @@ const GameCanvas = () => {
     // const gameRef = useRef(null);
     const [gameState, setGameState] = useState(null);
     const [displayMenu, setDisplayMenu] = useState(false);
+    const [paused, setPaused] = useState(false);
+
 
     const openMenu = () => {
         setDisplayMenu(true);
@@ -23,6 +25,15 @@ const GameCanvas = () => {
         console.log(displayMenu);
     }
 
+    function pause() {
+        if (paused) {
+            setPaused(false);
+        } else {
+            setPaused(true);
+        }
+        console.log({ paused });
+    }
+
     useEffect(() => {
 
         //set up the canvas
@@ -30,22 +41,15 @@ const GameCanvas = () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         canvas.style.width = `${window.innerWidth}px`;
-        canvas.style.height = `${window.innerHeight}px`;
+        canvas.style.height = `${window.innerHeight - 10}px`;
 
         const ctx = canvas.getContext("2d");
-
-
-
-
 
         //setup game
 
         let game = new Game(canvas.width, canvas.height);
         setGameState(game);
         game.start();
-
-        // game.player.ctx = ctx;
-
 
         function loop() {
 
@@ -66,15 +70,17 @@ const GameCanvas = () => {
             ctx.fillText(` LEVEL: ${game.currentLevelNumber + 1}`, 10, 90);
             ctx.fillText(` SCORE: ${game.player.score} / ${game.level.scoreToWin}`, 10, 130);
             ctx.fillText("Press Space to Gravitate!", 200, 50);
-
-            requestAnimationFrame(loop);
-
+            if (paused) {
+                cancelAnimationFrame(loop);
+            } else {
+                requestAnimationFrame(loop);
+            }
         }
 
         loop();
 
 
-    }, [])
+    }, [paused])
 
     const handleKeyDown = e => {
         if (e.keyCode === 32) {
@@ -83,12 +89,19 @@ const GameCanvas = () => {
         if (e.keyCode === 83) {
             gameState.start();
         }
+        if (e.keyCode === 80) {
+            pause();
+        }
     };
+
+
     const handleKeyUp = e => {
         gameState.player.state = 0;
-        console.log(gameState.player.state);
 
     };
+
+
+
 
 
 
