@@ -18,6 +18,11 @@ const GameCanvas = () => {
         setDisplayMenu(true);
     }
 
+    function handleChangeDisplay() {
+        setDisplayMenu(false);
+        console.log(displayMenu);
+    }
+
     useEffect(() => {
 
         //set up the canvas
@@ -95,7 +100,7 @@ const GameCanvas = () => {
             </div>
             <button onClick={openMenu} style={{ top: 0, right: 0, position: "absolute" }} >Menu</button>
             {displayMenu &&
-                <Menu />
+                <Menu value={displayMenu} onChange={handleChangeDisplay} />
             }
 
 

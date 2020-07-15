@@ -4,9 +4,8 @@ import '../styles/menuStyle.css';
 const Menu = (props) => {
 
     const close = () => {
-
+        props.onChange();
     }
-
 
     return (
         <div className="modal_wrapper">
@@ -28,11 +27,7 @@ const Menu = (props) => {
                 </div>
             </div>
         </div>
-
     )
-    // } else {
-    //     return null;
-    // }
 }
 
 
