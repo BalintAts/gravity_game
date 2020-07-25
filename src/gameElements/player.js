@@ -17,16 +17,16 @@ class Player {
     }
 
 
-    draw = (ctx) => {
-        // if (!this.img.complete) {
-        //     setTimeout(function () {
-        //         this.draw(ctx, this.img);
-        //     }, 50);
-        //     return;
-        // }
-        this.img.onload = this.drawUfo;
-        // ctx.drawImage(this.img, this.posX, this.posY, 150, 150);
-    }
+    // draw = (ctx) => {
+    //     // if (!this.img.complete) {
+    //     //     setTimeout(function () {
+    //     //         this.draw(ctx, this.img);
+    //     //     }, 50);
+    //     //     return;
+    //     // }
+    //     this.img.onload = this.drawUfo;
+    //     ctx.drawImage(this.img, this.posX, this.posY, 150, 150);
+    // }
 
 
     constructor(posX, posY, game) {
@@ -37,14 +37,14 @@ class Player {
 
     }
 
-    // draw(ctx) {
-    //     ctx.save();
-    //     ctx.fillStyle = "red";
-    //     ctx.beginPath();
-    //     ctx.arc(this.posX, this.posY, this.rad, 0, 2 * Math.PI);
-    //     ctx.fill();
-    //     ctx.restore();
-    // }
+    draw(ctx) {
+        ctx.save();
+        ctx.fillStyle = "red";
+        ctx.beginPath();
+        ctx.arc(this.posX, this.posY, this.rad, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.restore();
+    }
 
 
 

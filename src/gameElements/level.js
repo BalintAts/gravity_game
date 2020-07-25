@@ -1,5 +1,3 @@
-import GravitableObject from "./gravitableObject";
-import OtherObject from "./otherObject";
 import GameObject from "./gameObject";
 
 import levelsData from "../data/levelsData";
