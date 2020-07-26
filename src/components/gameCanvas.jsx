@@ -1,16 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react'
 import Game from '../gameElements/game';
-import Level from '../gameElements/level';
-import Player from '../gameElements/player';
-import GameObject from '../gameElements/gameObject';
-import levelsData from '../data/levelsData';
 import Menu from './menu';
 
 
 const GameCanvas = () => {
     const canvasRef = useRef(null);
-    const contextRef = useRef(null);
-    // const gameRef = useRef(null);
     const [gameState, setGameState] = useState(null);
     const [displayMenu, setDisplayMenu] = useState(false);
     const [paused, setPaused] = useState(false);
@@ -99,11 +93,6 @@ const GameCanvas = () => {
         gameState.player.state = 0;
 
     };
-
-
-
-
-
 
 
     return (

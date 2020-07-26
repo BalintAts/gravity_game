@@ -1,4 +1,3 @@
-import GameObject from "./gameObject";
 
 class Player {
 
