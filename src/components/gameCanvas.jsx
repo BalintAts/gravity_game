@@ -45,6 +45,9 @@ const GameCanvas = () => {
         setGameState(game);
         game.start();
 
+
+
+
         function loop() {
 
             game.player.move();
@@ -57,6 +60,9 @@ const GameCanvas = () => {
             }
 
             game.player.draw(ctx);
+
+
+            // game.player.draw(ctx);
 
             ctx.fillStyle = "white";
             ctx.font = "30px Arial";

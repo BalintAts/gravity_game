@@ -45,6 +45,18 @@ class Player {
     }
 
 
+    // draw(ctx) {
+    //     let img = new Image();
+    //     img.src = "/logo192.png";
+    //     img.onload = drawImageTest;
+
+    //     function drawImageTest() {
+    //         ctx.drawImage(img, 150, 150);
+    //     }
+
+    // }
+
+
 
     checkCollectable(levelObject, distance) {
         if (distance < this.rad + levelObject.rad && levelObject.collectable === true && levelObject.visible === true) {
