@@ -9,32 +9,31 @@ class Player {
     lives = 3;
     score = 0;
     state = 0;
-    img = new Image();
-
-    drawUfo(ctx) {
-        ctx.drawImage(this.img, this.posX, this.posY, 150, 150);
-    }
-
-
-    // draw = (ctx) => {
-    //     // if (!this.img.complete) {
-    //     //     setTimeout(function () {
-    //     //         this.draw(ctx, this.img);
-    //     //     }, 50);
-    //     //     return;
-    //     // }
-    //     this.img.onload = this.drawUfo;
-    //     ctx.drawImage(this.img, this.posX, this.posY, 150, 150);
-    // }
-
 
     constructor(posX, posY, game) {
         this.posX = posX;
         this.posY = posY;
         this.game = game;
+        this.img = new Image();
         this.img.source = "/logo192.png";
-
     }
+
+
+    // draw = (ctx) => {
+    //     if (!this.img.complete) {
+    //         // setTimeout(function () {
+    //         //     this.draw(ctx, this.img);
+    //         // }, 50);
+    //         return;
+    //     }
+    //     // this.img.onload = this.drawUfo;
+    //     ctx.drawImage(this.img, this.posX, this.posY, 150, 150);
+    // }
+
+
+    // drawUfo(ctx) {
+    //     ctx.drawImage(this.img, this.posX, this.posY, 150, 150);
+    // }
 
     draw(ctx) {
         ctx.save();
