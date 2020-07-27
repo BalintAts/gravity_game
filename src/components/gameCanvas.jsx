@@ -57,7 +57,7 @@ const GameCanvas = () => {
                 img.onload = drawImageTest;
 
                 function drawImageTest() {
-                    ctx.drawImage(img, 150, 150);
+                    ctx.drawImage(img, 0, 0, window.innerWidth, window.innerHeight);
                 }
             }
 
