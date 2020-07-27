@@ -46,23 +46,39 @@ const GameCanvas = () => {
         game.start();
 
 
-
-
         function loop() {
+
+            // ctx.globalCompositeOperation = 'destination-over';
+            // ctx.clearRect(0, 0, window.innerWidth, window.innerHeight); // clear canvas
+
+            function drawBackGround(ctx) {
+                let img = new Image();
+                img.src = "/space_image.png";
+                img.onload = drawImageTest;
+
+                function drawImageTest() {
+                    ctx.drawImage(img, 150, 150);
+                }
+            }
+
+            drawBackGround(ctx);
 
             game.player.move();
 
-            ctx.fillStyle = "#6666ff";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            // ctx.fillStyle = "#6666ff";
+            // ctx.fillRect(0, 0, canvas.width, canvas.height);
+            // ctx.save();
 
             for (let i = 0; i < game.level.gameObjects.length; i++) {
+                ctx.save();
                 game.level.gameObjects[i].draw(ctx);
+                ctx.restore();
+
             }
+
 
             game.player.draw(ctx);
 
-
-            // game.player.draw(ctx);
 
             ctx.fillStyle = "white";
             ctx.font = "30px Arial";

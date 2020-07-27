@@ -16,7 +16,12 @@ class Player {
         this.game = game;
         this.img = new Image();
         this.img.source = "/logo192.png";
+        this.img.onload = function () {
+            this.imageIsLoaded = true;
+        };
     }
+
+
 
 
     // draw = (ctx) => {
@@ -35,15 +40,29 @@ class Player {
     //     ctx.drawImage(this.img, this.posX, this.posY, 150, 150);
     // }
 
+    // draw(ctx) {
+    //     if (this.imageIsLoaded) {
+    //         ctx.save();
+    //         // ctx.fillStyle = "red";
+    //         // ctx.beginPath();
+    //         // ctx.arc(this.posX, this.posY, this.rad, 0, 2 * Math.PI);
+    //         // ctx.fill();
+    //         ctx.drawImage(this.img, this.posX, this.posY, 150, 150);
+    //         ctx.restore();
+    //     }
+    // }
+
+
     draw(ctx) {
         ctx.save();
         ctx.fillStyle = "red";
         ctx.beginPath();
         ctx.arc(this.posX, this.posY, this.rad, 0, 2 * Math.PI);
         ctx.fill();
+        // ctx.drawImage(this.img, this.posX, this.posY, 150, 150);
         ctx.restore();
-    }
 
+    }
 
     // draw(ctx) {
     //     let img = new Image();
