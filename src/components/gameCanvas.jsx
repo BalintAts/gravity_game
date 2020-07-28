@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import Game from '../gameElements/game';
 import Menu from './menu';
+import { IsLoggedInProvider } from '../contexts/loginContext';
 
 
 const GameCanvas = () => {
@@ -118,17 +119,17 @@ const GameCanvas = () => {
 
 
     return (
-        <>
-            <div tabIndex="0" onKeyDown={handleKeyDown} onKeyUp={handleKeyUp}>
-                <canvas id="viewport" ref={canvasRef} />
-            </div>
-            <button onClick={openMenu} style={{ top: 0, right: 0, position: "absolute" }} >Menu</button>
-            {displayMenu &&
-                <Menu value={displayMenu} onChange={handleChangeDisplay} />
-            }
-
-
-        </>
+        <IsLoggedInProvider>
+            <>
+                <div tabIndex="0" onKeyDown={handleKeyDown} onKeyUp={handleKeyUp}>
+                    <canvas id="viewport" ref={canvasRef} />
+                </div>
+                <button onClick={openMenu} style={{ top: 0, right: 0, position: "absolute" }} >Menu</button>
+                {displayMenu &&
+                    <Menu value={displayMenu} onChange={handleChangeDisplay} />
+                }
+            </>
+        </IsLoggedInProvider>
     )
 }
 
