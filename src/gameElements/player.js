@@ -55,10 +55,10 @@ class Player {
 
     draw(ctx) {
         ctx.save();
-        ctx.fillStyle = "red";
-        ctx.beginPath();
-        ctx.arc(this.posX, this.posY, this.rad, 0, 2 * Math.PI);
-        ctx.fill();
+        // ctx.fillStyle = "red";
+        // ctx.beginPath();
+        // ctx.arc(this.posX, this.posY, this.rad, 0, 2 * Math.PI);
+        // ctx.fill();
         // ctx.drawImage(this.img, this.posX, this.posY, 150, 150);
         ctx.restore();
 
