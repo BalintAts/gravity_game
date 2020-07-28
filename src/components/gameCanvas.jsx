@@ -7,7 +7,7 @@ import { IsLoggedInProvider } from '../contexts/loginContext';
 const GameCanvas = () => {
     const canvasRef = useRef(null);
     const [gameState, setGameState] = useState(null);
-    const [displayMenu, setDisplayMenu] = useState(false);
+    const [displayMenu, setDisplayMenu] = useState(true);
     const [paused, setPaused] = useState(false);
 
 
