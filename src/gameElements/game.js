@@ -13,6 +13,11 @@ class Game {
         this.height = height;
     }
 
+    submitProgress() {
+        // axios magic will go here
+    }
+
+
     start() {
         this.player = new Player(200, 400, this);
         this.createLevel();
@@ -42,6 +47,7 @@ class Game {
 
     levelCompleted() {
         this.currentLevelNumber++;
+        this.submitProgress();
         this.createLevel();
     }
 
