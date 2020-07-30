@@ -4,6 +4,7 @@ import Player from "./player";
 
 class Game {
 
+    user;
     level;
     currentLevelNumber = 0;
     player;
@@ -14,7 +15,7 @@ class Game {
     }
 
     submitProgress() {
-        // axios magic will go here
+        // axios magic will go here, using this.user
     }
 
 

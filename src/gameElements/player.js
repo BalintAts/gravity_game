@@ -2,7 +2,7 @@
 class Player {
 
     game;
-    rad = 50; //this is always the same
+    rad = 50;
     verticalSpeed = 0;
     horizontalSpeed = 0;
     speedRatio = 10;
@@ -24,6 +24,7 @@ class Player {
 
 
 
+
     // draw = (ctx) => {
     //     if (!this.img.complete) {
     //         // setTimeout(function () {
@@ -36,9 +37,7 @@ class Player {
     // }
 
 
-    // drawUfo(ctx) {
-    //     ctx.drawImage(this.img, this.posX, this.posY, 150, 150);
-    // }
+
 
     // draw(ctx) {
     //     if (this.imageIsLoaded) {
@@ -53,16 +52,16 @@ class Player {
     // }
 
 
-    draw(ctx) {
-        ctx.save();
-        ctx.fillStyle = "red";
-        ctx.beginPath();
-        ctx.arc(this.posX, this.posY, this.rad, 0, 2 * Math.PI);
-        ctx.fill();
-        // ctx.drawImage(this.img, this.posX, this.posY, 150, 150);
-        ctx.restore();
+    // draw(ctx) {
+    //     ctx.save();
+    //     ctx.fillStyle = "red";
+    //     ctx.beginPath();
+    //     ctx.arc(this.posX, this.posY, this.rad, 0, 2 * Math.PI);
+    //     ctx.fill();
+    //     // ctx.drawImage(this.img, this.posX, this.posY, 150, 150);
+    //     ctx.restore();
 
-    }
+    // }
 
     // draw(ctx) {
     //     let img = new Image();

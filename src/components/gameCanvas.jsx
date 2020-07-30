@@ -40,6 +40,8 @@ const GameCanvas = () => {
 
         const ctx = canvas.getContext("2d");
 
+
+
         //setup game
 
         let game = new Game(canvas.width, canvas.height);
@@ -52,6 +54,23 @@ const GameCanvas = () => {
             // ctx.globalCompositeOperation = 'destination-over';
             // ctx.clearRect(0, 0, window.innerWidth, window.innerHeight); // clear canvas
 
+            // function drawBackGround(ctx) {
+            //     let img = new Image();
+            //     img.src = "/space_image.png";
+            //     img.onload = drawImageTest;
+
+            //     function drawImageTest() {
+            //         ctx.drawImage(img, 0, 0, window.innerWidth, window.innerHeight);
+            //     }
+            // }
+
+            // drawBackGround(ctx);
+
+
+            game.player.move();
+
+
+            //draw background in every frame, to clear the screen
             function drawBackGround(ctx) {
                 let img = new Image();
                 img.src = "/space_image.png";
@@ -64,12 +83,7 @@ const GameCanvas = () => {
 
             drawBackGround(ctx);
 
-            game.player.move();
-
-            // ctx.fillStyle = "#6666ff";
-            // ctx.fillRect(0, 0, canvas.width, canvas.height);
-            // ctx.save();
-
+            //draw gameobjects
             for (let i = 0; i < game.level.gameObjects.length; i++) {
                 ctx.save();
                 game.level.gameObjects[i].draw(ctx);
@@ -78,14 +92,28 @@ const GameCanvas = () => {
             }
 
 
-            game.player.draw(ctx);
 
+            //draw player
+            function drawUfo(ctx) {
+                let img = new Image();
+                img.src = "/ufo.png";
+                img.onload = drawImageTest;
 
+                function drawImageTest() {
+                    ctx.drawImage(img, game.player.posX - game.player.rad, game.player.posY - game.player.rad, 200, 200);
+                }
+            }
+
+            ctx.save();
+            drawUfo(ctx);
+            ctx.restore();
+
+            //draw texts
             ctx.fillStyle = "white";
             ctx.font = "30px Arial";
             ctx.fillText(` LIVES:  ${game.player.lives}`, 10, 50);
             ctx.fillText(` LEVEL: ${game.currentLevelNumber + 1}`, 10, 90);
-            ctx.fillText(` SCORE: ${game.player.score} / ${game.level.scoreToWin}`, 10, 130);
+            ctx.fillText(` COLLECTED: ${game.player.score} / ${game.level.scoreToWin}`, 10, 130);
             ctx.fillText("Press Space to Gravitate!", 200, 50);
             if (paused) {
                 cancelAnimationFrame(loop);
