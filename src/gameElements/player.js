@@ -34,7 +34,7 @@ class Player {
             let distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
             let direction = Math.atan(distanceY / distanceX);
 
-            this.checkCollectable(levelObject, distance);
+            this.checkCollectable(levelObject, distance); // this should be taken out into the gamelogic loop, or into the game class
 
             let AccMagnitude = this.state * levelObject.mass / (distance * distance);
             if (this.posX > levelObject.posX) {
