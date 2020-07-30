@@ -31,38 +31,6 @@ const Menu = (props) => {
         <div className="modal_wrapper">
             <div className="modal_backdrop">
                 <div className="modal_box">
-                    {/* {isLoggedIn ? (
-                        <>
-                            <h1 style={{ color: "white" }}>Logged in</h1>
-                            {strysomething}
-                            <ul>
-                                <li>
-                                    <button onClick={close}>New Game</button>
-                                </li>
-                                <li>
-                                    <button onClick={close}>Load game</button>
-                                </li>
-                                <li>
-                                    <button onClick={loggingOut}>Log out</button>
-                                </li>
-                            </ul>
-                        </>
-                    ) : (
-                            <>
-                                <h1 style={{ color: "white" }}>Not logged in</h1>
-                                <ul>
-                                    <li>
-                                        <button onClick={loggingIn}>Play without saving progress</button>
-                                    </li>
-                                    <li>
-                                        <button onClick={loggingIn}>Login</button>
-                                    </li>
-                                    <li>
-                                        <button onClick={loggingIn}>Register to save progress</button>
-                                    </li>
-                                </ul>
-                            </>
-                        )} */}
                     {menuState === "notLoggedIn" &&
                         <>
                             <h1 style={{ color: "white" }}>Not logged in</h1>

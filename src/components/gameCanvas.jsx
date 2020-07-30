@@ -51,22 +51,7 @@ const GameCanvas = () => {
 
         function loop() {
 
-            // ctx.globalCompositeOperation = 'destination-over';
-            // ctx.clearRect(0, 0, window.innerWidth, window.innerHeight); // clear canvas
-
-            // function drawBackGround(ctx) {
-            //     let img = new Image();
-            //     img.src = "/space_image.png";
-            //     img.onload = drawImageTest;
-
-            //     function drawImageTest() {
-            //         ctx.drawImage(img, 0, 0, window.innerWidth, window.innerHeight);
-            //     }
-            // }
-
-            // drawBackGround(ctx);
-
-
+            //Player interaction with the level
             game.player.move();
 
 
@@ -90,8 +75,6 @@ const GameCanvas = () => {
                 ctx.restore();
 
             }
-
-
 
             //draw player
             function drawUfo(ctx) {

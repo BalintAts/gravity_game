@@ -14,70 +14,11 @@ class Player {
         this.posX = posX;
         this.posY = posY;
         this.game = game;
-        this.img = new Image();
-        this.img.source = "/logo192.png";
-        this.img.onload = function () {
-            this.imageIsLoaded = true;
-        };
     }
 
 
-
-
-
-    // draw = (ctx) => {
-    //     if (!this.img.complete) {
-    //         // setTimeout(function () {
-    //         //     this.draw(ctx, this.img);
-    //         // }, 50);
-    //         return;
-    //     }
-    //     // this.img.onload = this.drawUfo;
-    //     ctx.drawImage(this.img, this.posX, this.posY, 150, 150);
-    // }
-
-
-
-
-    // draw(ctx) {
-    //     if (this.imageIsLoaded) {
-    //         ctx.save();
-    //         // ctx.fillStyle = "red";
-    //         // ctx.beginPath();
-    //         // ctx.arc(this.posX, this.posY, this.rad, 0, 2 * Math.PI);
-    //         // ctx.fill();
-    //         ctx.drawImage(this.img, this.posX, this.posY, 150, 150);
-    //         ctx.restore();
-    //     }
-    // }
-
-
-    // draw(ctx) {
-    //     ctx.save();
-    //     ctx.fillStyle = "red";
-    //     ctx.beginPath();
-    //     ctx.arc(this.posX, this.posY, this.rad, 0, 2 * Math.PI);
-    //     ctx.fill();
-    //     // ctx.drawImage(this.img, this.posX, this.posY, 150, 150);
-    //     ctx.restore();
-
-    // }
-
-    // draw(ctx) {
-    //     let img = new Image();
-    //     img.src = "/logo192.png";
-    //     img.onload = drawImageTest;
-
-    //     function drawImageTest() {
-    //         ctx.drawImage(img, 150, 150);
-    //     }
-
-    // }
-
-
-
     checkCollectable(levelObject, distance) {
-        if (distance < this.rad + levelObject.rad && levelObject.collectable === true && levelObject.visible === true) {
+        if (distance < this.rad + levelObject.rad && levelObject.collectable && levelObject.visible) {
             levelObject.visible = false;
             this.score++;
             this.game.checkLevelCompleted();
@@ -95,13 +36,13 @@ class Player {
 
             this.checkCollectable(levelObject, distance);
 
-            let AccMagnitude = this.state * levelObject.mass / (distance * distance);    //radius is in ratio with mass, player's mass = 1
+            let AccMagnitude = this.state * levelObject.mass / (distance * distance);
             if (this.posX > levelObject.posX) {
                 AccMagnitude *= -1
             }
 
             if (levelObject.gravitable) {
-                if (distance > 20) {   //the condition avoids quantum
+                if (distance > 20) {   //the condition avoids the quantum tunelling bug
                     this.horizontalSpeed += AccMagnitude * Math.cos(direction);
                     this.verticalSpeed += AccMagnitude * Math.sin(direction);
                 }
