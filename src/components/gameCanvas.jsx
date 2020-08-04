@@ -36,7 +36,7 @@ const GameCanvas = () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         canvas.style.width = `${window.innerWidth}px`;
-        canvas.style.height = `${window.innerHeight - 10}px`;
+        canvas.style.height = `${window.innerHeight}px`;
 
         const ctx = canvas.getContext("2d");
 
@@ -77,7 +77,7 @@ const GameCanvas = () => {
             }
 
             //draw player
-            function drawUfo(ctx) {
+            function draw(ctx) {
                 let img = new Image();
                 img.src = "/ufo.png";
                 img.onload = drawImageTest;
@@ -88,7 +88,8 @@ const GameCanvas = () => {
             }
 
             ctx.save();
-            drawUfo(ctx);
+            // game.player.draw(ctx);
+            draw(ctx);
             ctx.restore();
 
             //draw texts

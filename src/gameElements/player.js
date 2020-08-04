@@ -25,6 +25,17 @@ class Player {
         }
     }
 
+    draw(ctx) {
+        let img = new Image();
+        img.src = "/ufo.png";
+        img.onload = drawImageTest;
+
+        function drawImageTest() {
+            ctx.drawImage(img, this.posX - this.rad, this.posY - this.rad, 200, 200);
+        }
+
+    }
+
 
     move() {
         for (let levelObject of this.game.level.gameObjects) {
