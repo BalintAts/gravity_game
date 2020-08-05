@@ -33,10 +33,18 @@ const GameCanvas = () => {
 
         //set up the canvas
         const canvas = canvasRef.current;
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        canvas.style.width = `${window.innerWidth}px`;
-        canvas.style.height = `${window.innerHeight}px`;
+        // canvas.width = window.innerWidth;
+        // canvas.height = window.innerHeight;
+        // canvas.style.width = `${window.innerWidth}px`;
+        // canvas.style.height = `${window.innerHeight}px`;
+
+        const width = 1300;
+        const height = 700
+
+        canvas.width = width;
+        canvas.height = height;
+        canvas.style.width = width;
+        canvas.style.height = height;
 
         const ctx = canvas.getContext("2d");
 
@@ -44,7 +52,7 @@ const GameCanvas = () => {
 
         //setup game
 
-        let game = new Game(canvas.width, canvas.height);
+        let game = new Game(width, height);
         setGameState(game);
         game.start();
 
@@ -66,9 +74,40 @@ const GameCanvas = () => {
                 }
             }
 
+
             drawBackGround(ctx);
 
-            //draw gameobjects
+
+
+            // //drawother*********************************************
+            // function drawOther(ctx, imgSource, posX, posY, width, height) {
+            //     let img = new Image();
+            //     img.src = "/space_image.png";
+            //     img.onload = drawImageTest;
+
+            //     function drawImageTest() {
+            //         ctx.drawImage(imgSource, posX, posY, width, height);
+            //     }
+            // }
+
+
+            // for (let otherObject of game.level.gameObjects) {
+            //     ctx.save();
+            //     let imgSource = otherObject.imgSource;
+            //     let posX = otherObject.posX;
+            //     let posY = otherObject.posY;
+            //     let width = otherObject.rad * 2;
+            //     let height = otherObject.rad * 2;
+
+            //     drawOther(ctx, imgSource, posX, posY, width, height);
+            //     ctx.restore();
+            // }
+
+
+
+
+
+            //draw gameobjects*****************************
             for (let i = 0; i < game.level.gameObjects.length; i++) {
                 ctx.save();
                 game.level.gameObjects[i].draw(ctx);
@@ -76,7 +115,8 @@ const GameCanvas = () => {
 
             }
 
-            //draw player
+
+            //draw player*********************************
             function draw(ctx) {
                 let img = new Image();
                 img.src = "/ufo.png";
@@ -88,7 +128,6 @@ const GameCanvas = () => {
             }
 
             ctx.save();
-            // game.player.draw(ctx);
             draw(ctx);
             ctx.restore();
 

@@ -25,16 +25,16 @@ class Player {
         }
     }
 
-    draw(ctx) {
-        let img = new Image();
-        img.src = "/ufo.png";
-        img.onload = drawImageTest;
+    // draw(ctx) {
+    //     let img = new Image();
+    //     img.src = "/ufo.png";
+    //     img.onload = drawImageTest;
 
-        function drawImageTest() {
-            ctx.drawImage(img, this.posX - this.rad, this.posY - this.rad, 200, 200);
-        }
+    //     function drawImageTest() {
+    //         ctx.drawImage(img, this.posX - this.rad, this.posY - this.rad, 200, 200);
+    //     }
 
-    }
+    // }
 
 
     move() {

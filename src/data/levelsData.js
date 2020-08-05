@@ -1,13 +1,13 @@
 let levelsData =
     [
         [
-            { x: 500, y: 400, radius: 100, mass: 80, gravitable: true, collectable: false, color: "green", visible: true },
-            { x: 1100, y: 450, radius: 100, mass: 80, gravitable: true, collectable: false, color: "green", visible: true },
-            { x: 600, y: 700, radius: 50, mass: 50, gravitable: true, collectable: false, color: "green", visible: true },
-            { x: 600, y: 100, radius: 50, mass: 50, gravitable: true, collectable: false, color: "green", visible: true },
-            { x: 600, y: 450, radius: 50, mass: 50, gravitable: false, collectable: true, color: "yellow", visible: true },
-            { x: 700, y: 700, radius: 50, mass: 50, gravitable: false, collectable: true, color: "yellow", visible: true },
-            { x: 1200, y: 400, radius: 50, mass: 50, gravitable: false, collectable: true, color: "yellow", visible: true },
+            { imgSource: "/saturn.png", x: 500, y: 400, radius: 100, mass: 80, gravitable: true, collectable: false, color: "green", visible: true },
+            { imgSource: "/saturn.png", x: 1100, y: 450, radius: 100, mass: 80, gravitable: true, collectable: false, color: "green", visible: true },
+            { imgSource: "/saturn.png", x: 600, y: 700, radius: 50, mass: 50, gravitable: true, collectable: false, color: "green", visible: true },
+            { imgSource: "/saturn.png", x: 600, y: 100, radius: 50, mass: 50, gravitable: true, collectable: false, color: "green", visible: true },
+            { imgSource: "/saturn.png", x: 600, y: 450, radius: 50, mass: 50, gravitable: false, collectable: true, color: "yellow", visible: true },
+            { imgSource: "/saturn.png", x: 700, y: 700, radius: 50, mass: 50, gravitable: false, collectable: true, color: "yellow", visible: true },
+            { imgSource: "/saturn.png", x: 1200, y: 400, radius: 50, mass: 50, gravitable: false, collectable: true, color: "yellow", visible: true },
 
         ],
         [
