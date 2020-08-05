@@ -27,6 +27,7 @@ class Player {
 
 
     move() {
+        console.log("playermove");
         for (let levelObject of this.game.level.gameObjects) {
             let distanceX = levelObject.posX - this.posX;
             let distanceY = levelObject.posY - this.posY;
