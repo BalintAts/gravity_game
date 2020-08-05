@@ -115,9 +115,8 @@ const GameCanvas = () => {
 
             }
 
-
-            //draw player*********************************
-            function draw(ctx) {
+            //draw player
+            function drawUfo(ctx) {
                 let img = new Image();
                 img.src = "/ufo.png";
                 img.onload = drawImageTest;
@@ -128,7 +127,7 @@ const GameCanvas = () => {
             }
 
             ctx.save();
-            draw(ctx);
+            drawUfo(ctx);
             ctx.restore();
 
             //draw texts
