@@ -76,6 +76,33 @@ const GameCanvas = () => {
 
             }
 
+            //drawother*********************************************
+            // function drawOther(ctx, imgSource, posX, posY, width, height) {
+            //     let img = new Image();
+            //     img.src = imgSource;
+            //     img.onload = drawImageTest;
+
+            //     function drawImageTest() {
+            //         ctx.drawImage(imgSource, posX, posY, width, height);
+            //     }
+            // }
+
+
+            // for (let otherObject of game.level.gameObjects) {
+            //     ctx.save();
+            //     let imgSource = otherObject.imgSource;
+            //     let posX = otherObject.posX;
+            //     let posY = otherObject.posY;
+            //     let width = otherObject.rad * 2;
+            //     let height = otherObject.rad * 2;
+
+            //     drawOther(ctx, imgSource, posX, posY, width, height);
+            //     ctx.restore();
+            // }
+
+            let planet = document.getElementById("planet");
+            ctx.drawImage(planet, 300, 300);
+
             //draw player
             function draw(ctx) {
                 let img = new Image();
@@ -140,6 +167,7 @@ const GameCanvas = () => {
                 {displayMenu &&
                     <Menu value={displayMenu} onChange={handleChangeDisplay} />
                 }
+                <img src="/saturn.png" alt="dsdfhsdk" id="planet"></img>
             </>
         </IsLoggedInProvider>
     )
