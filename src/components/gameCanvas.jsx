@@ -69,12 +69,12 @@ const GameCanvas = () => {
             drawBackGround(ctx);
 
             //draw gameobjects
-            for (let i = 0; i < game.level.gameObjects.length; i++) {
-                ctx.save();
-                game.level.gameObjects[i].draw(ctx);
-                ctx.restore();
+            // for (let i = 0; i < game.level.gameObjects.length; i++) {
+            //     ctx.save();
+            //     game.level.gameObjects[i].draw(ctx);
+            //     ctx.restore();
 
-            }
+            // }
 
             //drawother*********************************************
             // function drawOther(ctx, imgSource, posX, posY, width, height) {
@@ -100,8 +100,16 @@ const GameCanvas = () => {
             //     ctx.restore();
             // }
 
+
             let planet = document.getElementById("planet");
-            ctx.drawImage(planet, 300, 300);
+            // ctx.drawImage(planet, 350, 250, 250, 250);
+
+            for (let otherObject of game.level.gameObjects) {
+                ctx.save();
+                otherObject.draw(ctx);
+                //ctx.drawImage(planet, otherObject.posX, otherObject.posY, 250, 250);
+                ctx.restore();
+            }
 
             //draw player
             function draw(ctx) {
@@ -110,7 +118,7 @@ const GameCanvas = () => {
                 img.onload = drawImageTest;
 
                 function drawImageTest() {
-                    ctx.drawImage(img, game.player.posX - game.player.rad, game.player.posY - game.player.rad, 200, 200);
+                    ctx.drawImage(img, game.player.posX - game.player.rad - 50, game.player.posY - game.player.rad - 50, 200, 200);
                 }
             }
 
@@ -160,6 +168,7 @@ const GameCanvas = () => {
     return (
         <IsLoggedInProvider>
             <>
+                <img src="/saturn.png" alt="dsdfhsdk" id="planet"></img>
                 <div tabIndex="0" onKeyDown={handleKeyDown} onKeyUp={handleKeyUp}>
                     <canvas id="viewport" ref={canvasRef} />
                 </div>
@@ -167,7 +176,6 @@ const GameCanvas = () => {
                 {displayMenu &&
                     <Menu value={displayMenu} onChange={handleChangeDisplay} />
                 }
-                <img src="/saturn.png" alt="dsdfhsdk" id="planet"></img>
             </>
         </IsLoggedInProvider>
     )
