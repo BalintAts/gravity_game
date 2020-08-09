@@ -68,37 +68,7 @@ const GameCanvas = () => {
 
             drawBackGround(ctx);
 
-            //draw gameobjects
-            // for (let i = 0; i < game.level.gameObjects.length; i++) {
-            //     ctx.save();
-            //     game.level.gameObjects[i].draw(ctx);
-            //     ctx.restore();
 
-            // }
-
-            //drawother*********************************************
-            // function drawOther(ctx, imgSource, posX, posY, width, height) {
-            //     let img = new Image();
-            //     img.src = imgSource;
-            //     img.onload = drawImageTest;
-
-            //     function drawImageTest() {
-            //         ctx.drawImage(imgSource, posX, posY, width, height);
-            //     }
-            // }
-
-
-            // for (let otherObject of game.level.gameObjects) {
-            //     ctx.save();
-            //     let imgSource = otherObject.imgSource;
-            //     let posX = otherObject.posX;
-            //     let posY = otherObject.posY;
-            //     let width = otherObject.rad * 2;
-            //     let height = otherObject.rad * 2;
-
-            //     drawOther(ctx, imgSource, posX, posY, width, height);
-            //     ctx.restore();
-            // }
 
 
             let planet = document.getElementById("planet");
@@ -106,8 +76,12 @@ const GameCanvas = () => {
 
             for (let otherObject of game.level.gameObjects) {
                 ctx.save();
-                otherObject.draw(ctx);
-                //ctx.drawImage(planet, otherObject.posX, otherObject.posY, 250, 250);
+                if (otherObject.gravitable) {
+                    ctx.drawImage(planet, otherObject.posX - otherObject.rad, otherObject.posY - otherObject.rad, 2 * otherObject.rad, 2 * otherObject.rad);
+                } else {
+                    otherObject.draw(ctx);
+
+                }
                 ctx.restore();
             }
 
@@ -168,7 +142,7 @@ const GameCanvas = () => {
     return (
         <IsLoggedInProvider>
             <>
-                <img src="/saturn.png" alt="dsdfhsdk" id="planet"></img>
+                <img src="/saturn.png" alt="dsdfhsdk" id="planet" width="0" height="0"></img>
                 <div tabIndex="0" onKeyDown={handleKeyDown} onKeyUp={handleKeyUp}>
                     <canvas id="viewport" ref={canvasRef} />
                 </div>
