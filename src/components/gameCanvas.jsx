@@ -41,67 +41,7 @@ const GameCanvas = () => {
         const ctx = canvas.getContext("2d");
 
 
-
-        //setup game
-
-        let game = new Game(canvas.width, canvas.height);
-        setGameState(game);
-        game.start();
-
-
-        function loop() {
-
-            //Player interaction with the level
-            game.player.move();
-
-
-            //draw background in every frame, to clear the screen
-            function drawBackGround(ctx) {
-                let img = new Image();
-                img.src = "/space_image.png";
-                img.onload = drawImageTest;
-
-                function drawImageTest() {
-                    ctx.drawImage(img, 0, 0, window.innerWidth, window.innerHeight);
-                }
-            }
-
-            drawBackGround(ctx);
-
-
-
-
-            let planet = document.getElementById("planet");
-            // ctx.drawImage(planet, 350, 250, 250, 250);
-
-            for (let otherObject of game.level.gameObjects) {
-                ctx.save();
-                if (otherObject.gravitable) {
-                    ctx.drawImage(planet, otherObject.posX - otherObject.rad, otherObject.posY - otherObject.rad, 2 * otherObject.rad, 2 * otherObject.rad);
-                } else {
-                    otherObject.draw(ctx);
-
-                }
-                ctx.restore();
-            }
-
-            //draw player
-            function draw(ctx) {
-                let img = new Image();
-                img.src = "/ufo.png";
-                img.onload = drawImageTest;
-
-                function drawImageTest() {
-                    ctx.drawImage(img, game.player.posX - game.player.rad - 50, game.player.posY - game.player.rad - 50, 200, 200);
-                }
-            }
-
-            ctx.save();
-            // game.player.draw(ctx);
-            draw(ctx);
-            ctx.restore();
-
-            //draw texts
+        function drawHud() {
             ctx.fillStyle = "white";
             ctx.font = "30px Arial";
             ctx.fillText(` LIVES:  ${game.player.lives}`, 10, 50);
@@ -115,6 +55,61 @@ const GameCanvas = () => {
             }
         }
 
+
+        function drawBackGround(ctx) {
+            let img = new Image();
+            img.src = "/space_image.png";
+            img.onload = drawImageWhenLoaded;
+            function drawImageWhenLoaded() {
+                ctx.drawImage(img, 0, 0, window.innerWidth, window.innerHeight);
+            }
+        }
+
+
+        function drawLevelObejcts() {
+            let planet = document.getElementById("planet");
+            for (let otherObject of game.level.gameObjects) {
+                ctx.save();
+                if (otherObject.gravitable) {
+                    ctx.drawImage(planet, otherObject.posX - otherObject.rad, otherObject.posY - otherObject.rad, 2 * otherObject.rad, 2 * otherObject.rad);
+                } else {
+                    otherObject.draw(ctx);
+                }
+                ctx.restore();
+            }
+        }
+
+
+        function drawPlayer() {
+            function draw(ctx) {
+                let img = new Image();
+                img.src = "/ufo.png";
+                img.onload = drawImageTest;
+
+                function drawImageTest() {
+                    ctx.drawImage(img, game.player.posX - game.player.rad - 50, game.player.posY - game.player.rad - 50, 200, 200);
+                }
+            }
+            ctx.save();
+            draw(ctx);
+            ctx.restore();
+        }
+
+
+
+
+        function loop() {
+            game.player.move();
+            drawBackGround(ctx);
+            drawLevelObejcts();
+            drawPlayer();
+            drawHud();
+        }
+
+        //setup game
+        let game = new Game(canvas.width, canvas.height);
+        setGameState(game);
+        game.start();
         loop();
 
 
