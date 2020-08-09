@@ -31,7 +31,6 @@ const GameCanvas = () => {
 
     useEffect(() => {
 
-        //set up the canvas
         const canvas = canvasRef.current;
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -39,7 +38,6 @@ const GameCanvas = () => {
         canvas.style.height = `${window.innerHeight}px`;
 
         const ctx = canvas.getContext("2d");
-
 
         function drawHud() {
             ctx.fillStyle = "white";
@@ -95,9 +93,6 @@ const GameCanvas = () => {
             ctx.restore();
         }
 
-
-
-
         function loop() {
             game.player.move();
             drawBackGround(ctx);
@@ -106,7 +101,8 @@ const GameCanvas = () => {
             drawHud();
         }
 
-        //setup game
+
+
         let game = new Game(canvas.width, canvas.height);
         setGameState(game);
         game.start();

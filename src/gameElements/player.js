@@ -25,52 +25,31 @@ class Player {
         }
     }
 
-    draw(ctx) {
-        let img = new Image();
-        img.src = "/ufo.png";
-        img.onload = drawImageTest;
-
-        function drawImageTest() {
-            ctx.drawImage(img, this.posX - this.rad, this.posY - this.rad, 200, 200);
-        }
-
-    }
-
-
     move() {
-        console.log("playermove");
         for (let levelObject of this.game.level.gameObjects) {
             let distanceX = levelObject.posX - this.posX;
             let distanceY = levelObject.posY - this.posY;
-
             let distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
             let direction = Math.atan(distanceY / distanceX);
-
-            this.checkCollectable(levelObject, distance); // this should be taken out into the gamelogic loop, or into the game class
-
             let AccMagnitude = this.state * levelObject.mass / (distance * distance);
             if (this.posX > levelObject.posX) {
                 AccMagnitude *= -1
             }
-
             if (levelObject.gravitable) {
                 if (distance > 20) {   //the condition avoids the quantum tunelling bug
                     this.horizontalSpeed += AccMagnitude * Math.cos(direction);
                     this.verticalSpeed += AccMagnitude * Math.sin(direction);
                 }
             }
-
             this.posX += this.horizontalSpeed * this.speedRatio;
             this.posY += this.verticalSpeed * this.speedRatio;
-
             if (this.posX + this.rad > this.game.width || this.posX - this.rad <= 0) {
                 this.horizontalSpeed *= -1;
             }
             if (this.posY + this.rad > this.game.height || this.posY - this.rad <= 0) {
                 this.verticalSpeed *= -1;
             }
-
-
+            this.checkCollectable(levelObject, distance);
         }
     }
 }
