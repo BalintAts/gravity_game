@@ -21,12 +21,11 @@ class Game {
 
     start() {
         this.player = new Player(200, 400, this);
-        this.createLevel();
+        this.changeLevel();
         this.currentLevelNumber = 0;
-
     }
 
-    createLevel() {
+    changeLevel() {
         this.level = new Level(this.currentLevelNumber, this);
         this.player.posX = 200;
         this.player.posY = 400;
@@ -34,8 +33,6 @@ class Game {
         this.player.verticalSpeed = 0;
         this.player.score = 0;
         this.player.lives = 3;
-
-
     }
 
     checkLevelCompleted() {
@@ -49,7 +46,7 @@ class Game {
     levelCompleted() {
         this.currentLevelNumber++;
         this.submitProgress();
-        this.createLevel();
+        this.changeLevel();
     }
 
     gameOver() {

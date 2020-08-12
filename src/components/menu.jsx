@@ -1,12 +1,14 @@
 import React, { useState, useEffect, forwardRef, useContext } from 'react';
 import '../styles/menuStyle.css';
 import { IsLoggedInContext } from '../contexts/loginContext';
+import { useForm } from "react-hook-form";
 
 const Menu = (props) => {
 
     const [isLoggedIn, setIsLoggedIn] = useContext(IsLoggedInContext);
     // const [loginScreen, setLoginScreen] = useState(false);
     const [menuState, setMenuState] = useState("notLoggedIn");
+    const { register, handleSubmit, errors } = useForm();
 
     const close = () => {
         props.onChange();
@@ -16,12 +18,16 @@ const Menu = (props) => {
         setMenuState("loggingIn");
     }
 
-    const logInSend = () => {
+    const logInSucces = () => {
         setMenuState("loggedIn");
     }
 
     const loggingOut = () => {
         setMenuState("notLoggedIn");
+    }
+
+    const onLogin = data => {
+        console.log(data);
     }
 
     useEffect(() => { }, [isLoggedIn])
@@ -49,8 +55,11 @@ const Menu = (props) => {
                     }
                     {menuState === "loggingIn" &&
                         <>
-                            <h1 style={{ color: "white" }}>Login Page</h1>
-                            <button onClick={logInSend}>Login</button>
+                            <form onSubmit={handleSubmit(onLogin)}>
+                                <h1 style={{ color: "white" }}>Login Page</h1>
+                                <input type="text" placeholder="Username" name="userName" ref={register} />
+                                <input type="submit" />
+                            </form>
                         </>
 
                     }
