@@ -28,10 +28,17 @@ const Menu = (props) => {
         setMenuState("notLoggedIn");
     }
 
+    let axiosConfig = {
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "*",
+        }
+    };
+
     const onLogin = data => {
-        console.log(data);
-        axios.post(`localhost:8080/${data.userName}`)
-            .then(response => { console.log(response) })
+        axios.post(`http://localhost:8080/${data.userName}`, axiosConfig)
+            .then(response => { console.log("response: " + response.data) })
             .catch(error => { console.log(error) });
         logInSucces();
     }
@@ -41,10 +48,17 @@ const Menu = (props) => {
     }
 
     const onRegister = data => {
-
+        // console.log(data);
+        axios.post(`http://localhost:8080/reg`)
+            .then(response => { console.log(response) })
+            .catch(error => { console.log(error) });
     }
-
-
+    const showLadder = () => {
+        axios.get(`//localhost:8080/ladder`)
+            .then(response => { console.log(response) })
+            .catch(error => { console.log(error) })
+        setMenuState("ladder")
+    }
 
     useEffect(() => { }, [isLoggedIn])
 
@@ -65,6 +79,9 @@ const Menu = (props) => {
                                 </li>
                                 <li>
                                     <button onClick={registerFrom}>Register to save progress</button>
+                                </li>
+                                <li>
+                                    <button onClick={showLadder}>Ladder</button>
                                 </li>
                             </ul>
                         </>
