@@ -49,6 +49,7 @@ const Menu = (props) => {
             .then(response => { console.log(response) })
             .catch(error => { console.log(error) });
     }
+
     const showLadder = () => {
         axios.get(`//localhost:8080/ladder`)
             .then(response => {
@@ -58,8 +59,16 @@ const Menu = (props) => {
             })
             .catch(error => { console.log(error) })
         setMenuState("ladder");
+        console.log(menuState);
+    }
 
-
+    const goBack = () => {
+        if (isLoggedIn) {
+            setMenuState("loggedIn")
+        }
+        else {
+            setMenuState("notLoggedIn");
+        }
     }
 
     useEffect(() => { }, [isLoggedIn])
@@ -128,6 +137,13 @@ const Menu = (props) => {
                             </ul>
                         </>
                     }
+                    {menuState === "ladder" &&
+                        <>
+                            <button onClick={goBack}>Back</button>
+                        </>
+
+                    }
+
 
                 </div>
             </div>
