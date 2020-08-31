@@ -1,4 +1,4 @@
-let fakeUsers =
+let fakeUsersData =
     [
         {
             "name": "yyyy",
@@ -22,4 +22,4 @@ let fakeUsers =
         },
     ]
 
-export default fakeUsers;
+export default fakeUsersData;

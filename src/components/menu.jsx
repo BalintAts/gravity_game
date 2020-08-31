@@ -3,6 +3,8 @@ import '../styles/menuStyle.css';
 import { IsLoggedInContext } from '../contexts/loginContext';
 import { useForm } from "react-hook-form";
 import axios from 'axios';
+import fakeUsersData from '../data/fakeUsers';
+import axiosConfig from '../config/axiosConfig';
 
 const Menu = (props) => {
 
@@ -10,6 +12,7 @@ const Menu = (props) => {
     // const [loginScreen, setLoginScreen] = useState(false);
     const [menuState, setMenuState] = useState("notLoggedIn");
     const { register, handleSubmit, errors } = useForm();
+    const [users, setUsers] = useState(fakeUsersData); //will be useState() , when rout works
 
     const close = () => {
         props.onChange();
@@ -28,13 +31,6 @@ const Menu = (props) => {
         setMenuState("notLoggedIn");
     }
 
-    let axiosConfig = {
-        headers: {
-            'Content-Type': 'application/json;charset=UTF-8',
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Headers": "*",
-        }
-    };
 
     const onLogin = data => {
         axios.post(`http://localhost:8080/${data.userName}`, axiosConfig)
@@ -55,9 +51,15 @@ const Menu = (props) => {
     }
     const showLadder = () => {
         axios.get(`//localhost:8080/ladder`)
-            .then(response => { console.log(response) })
+            .then(response => {
+                console.log(response);
+                let res = response;
+                //  setUsers(res.data);
+            })
             .catch(error => { console.log(error) })
-        setMenuState("ladder")
+        setMenuState("ladder");
+
+
     }
 
     useEffect(() => { }, [isLoggedIn])
