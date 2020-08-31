@@ -5,6 +5,12 @@ import { useForm } from "react-hook-form";
 import axios from 'axios';
 import fakeUsersData from '../data/fakeUsers';
 import axiosConfig from '../config/axiosConfig';
+import ReactTable from 'react-table';
+// import { table } from 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Table from 'react-bootstrap/Table';
+
+
 
 const Menu = (props) => {
 
@@ -13,6 +19,8 @@ const Menu = (props) => {
     const [menuState, setMenuState] = useState("notLoggedIn");
     const { register, handleSubmit, errors } = useForm();
     const [users, setUsers] = useState(fakeUsersData); //will be useState() , when rout works
+
+
 
     const close = () => {
         props.onChange();
@@ -105,6 +113,9 @@ const Menu = (props) => {
                                 {errors.userName && <p style={{ color: "orange" }}>{errors.userName.message}</p>}
                                 <input type="submit" />
                             </form>
+                            <>
+                                <button onClick={goBack}>Back</button>
+                            </>
                         </>
 
                     }
@@ -118,6 +129,9 @@ const Menu = (props) => {
                                 {errors.password && <p style={{ color: "orange" }}>{errors.password.message}</p>}
                                 <input type="submit" />
                             </form>
+                            <>
+                                <button onClick={goBack}>Back</button>
+                            </>
                         </>
 
                     }
@@ -134,17 +148,31 @@ const Menu = (props) => {
                                 <li>
                                     <button onClick={loggingOut}>Log out</button>
                                 </li>
+                                <li>
+                                    <button onClick={goBack}>Back</button>
+                                </li>
                             </ul>
                         </>
                     }
                     {menuState === "ladder" &&
                         <>
+                            <Table striped bordered hover style={{ "position": "center" }}>
+                                <th>
+                                    <td>Name</td>
+                                    <td>Progress</td>
+                                </th>
+                                <tbody>
+                                    {users.map((user) => (
+                                        <tr>
+                                            <td key={user.name}> {user.name} </td>
+                                            <td key={user.progress}> {user.progress} </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </Table>
                             <button onClick={goBack}>Back</button>
                         </>
-
                     }
-
-
                 </div>
             </div>
         </div>
