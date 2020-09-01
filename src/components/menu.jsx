@@ -43,7 +43,7 @@ const Menu = (props) => {
 
 
     const onLogin = data => {
-        axios.post(`http://localhost:8080/${data.userName}`, axiosConfig, tokenConfig)
+        axios.post(`http://localhost:8080/${data.userName}`, axiosConfig)
             .then(response => {
                 console.log("response: " + response.data);
                 localStorage.setItem('token', response.data.token);
@@ -58,7 +58,7 @@ const Menu = (props) => {
     }
 
     const onRegister = data => {
-        // console.log(data);
+        console.log(data);
         axios.post(`http://localhost:8080/reg`, data, axiosConfig)
             .then(response => { console.log(response) })
             .catch(error => { console.log(error) });
@@ -72,13 +72,13 @@ const Menu = (props) => {
             })
             .catch(error => { console.log(error) })
         setMenuState("ladder");
-        let orderedUsers = users.sort((a, b) => (a.progress > b.progress) ? 1 : -1);
+        let orderedUsers = users.sort((a, b) => (a.progress < b.progress) ? 1 : -1);
         setUsers(orderedUsers);
         console.log(menuState);
     }
 
     const save = data => {
-        axios.put(`//localhost:8080/${currentUser.name}`, currentUser.progress, axiosConfig, tokenConfig)  //calling findUser in backend
+        axios.put(`//localhost:8080/${currentUser.name}`, currentUser.progress, axiosConfig)  //calling findUser in backend
             .then(response => {
                 console.log(response);
             })
@@ -124,7 +124,7 @@ const Menu = (props) => {
                         <>
                             <form onSubmit={handleSubmit(onLogin)}>
                                 <h1 style={{ color: "white" }}>Login Page</h1>
-                                <input type="text" placeholder="Username" name="userName" ref={register({ required: "NAME REQUIRED, YOU MORON" })} />
+                                <input type="text" placeholder="Username" name="username" ref={register({ required: "NAME REQUIRED, YOU MORON" })} />
                                 {errors.userName && <p style={{ color: "orange" }}>{errors.userName.message}</p>}
                                 <input type="submit" />
                             </form>

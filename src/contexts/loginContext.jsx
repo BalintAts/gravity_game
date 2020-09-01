@@ -10,3 +10,5 @@ export const IsLoggedInProvider = props => {
         </IsLoggedInContext.Provider>
     );
 }
+
+//  currentUserContext ?
