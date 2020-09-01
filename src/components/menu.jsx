@@ -9,8 +9,9 @@ import ReactTable from 'react-table';
 // import { table } from 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
+import tokenConfig from '../security/tokenConfig';
 
-
+//token only needed for "loadgame"??
 
 const Menu = (props) => {
 
@@ -19,6 +20,7 @@ const Menu = (props) => {
     const [menuState, setMenuState] = useState("notLoggedIn");
     const { register, handleSubmit, errors } = useForm();
     const [users, setUsers] = useState(fakeUsersData); //will be useState() , when rout works
+    const [currentUser, setCurrentUser] = useState(users[0]);  //init with a fakeUser
 
 
 
@@ -41,8 +43,12 @@ const Menu = (props) => {
 
 
     const onLogin = data => {
-        axios.post(`http://localhost:8080/${data.userName}`, axiosConfig)
-            .then(response => { console.log("response: " + response.data) })
+        axios.post(`http://localhost:8080/${data.userName}`, axiosConfig, tokenConfig)
+            .then(response => {
+                console.log("response: " + response.data);
+                localStorage.setItem('token', response.data.token);
+                setCurrentUser(response.data);
+            })
             .catch(error => { console.log(error) });
         logInSucces();
     }
@@ -53,7 +59,7 @@ const Menu = (props) => {
 
     const onRegister = data => {
         // console.log(data);
-        axios.post(`http://localhost:8080/reg`)
+        axios.post(`http://localhost:8080/reg`, data, axiosConfig)
             .then(response => { console.log(response) })
             .catch(error => { console.log(error) });
     }
@@ -62,12 +68,21 @@ const Menu = (props) => {
         axios.get(`//localhost:8080/ladder`)
             .then(response => {
                 console.log(response);
-                let res = response;
-                //  setUsers(res.data);
+                //  setUsers(response.data);
             })
             .catch(error => { console.log(error) })
         setMenuState("ladder");
+        let orderedUsers = users.sort((a, b) => (a.progress > b.progress) ? 1 : -1);
+        setUsers(orderedUsers);
         console.log(menuState);
+    }
+
+    const save = data => {
+        axios.put(`//localhost:8080/${currentUser.name}`, currentUser.progress, axiosConfig, tokenConfig)  //calling findUser in backend
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => { console.log(error) })
     }
 
     const goBack = () => {
@@ -144,6 +159,9 @@ const Menu = (props) => {
                                 </li>
                                 <li>
                                     <button onClick={close}>Load game</button>
+                                </li>
+                                <li>
+                                    <button onClick={save}>Save game</button>
                                 </li>
                                 <li>
                                     <button onClick={loggingOut}>Log out</button>

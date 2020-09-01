@@ -3,6 +3,12 @@ import logo from './logo.svg';
 import './App.css';
 import GameCanvas from './components/gameCanvas';
 import Menu from './components/menu';
+import Axios from 'axios';
+import token from './security/tokenConfig';
+
+
+
+
 
 function App() {
 
