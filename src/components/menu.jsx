@@ -47,7 +47,14 @@ const Menu = (props) => {
 
 
     const onLogin = data => {
-        axios.post(`http://localhost:8080/${data.userName}`)
+        axios.post(`http://localhost:8080/${data.userName}`,
+            {
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Headers": "*"
+                }
+            })
             .then(response => {
                 console.log("response: " + response.data);
                 localStorage.setItem('token', response.data.token);
@@ -81,7 +88,13 @@ const Menu = (props) => {
     }
 
     const showLadder = () => {
-        axios.get(`//localhost:8080/ladder`)
+        axios.get(`//localhost:8080/ladder`, {
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "*"
+            }
+        })
             .then(response => {
                 console.log(response);
                 //  setUsers(response.data);
