@@ -97,11 +97,10 @@ const Menu = (props) => {
         })
             .then(response => {
                 console.log(response.data);
-                setUsers(response.data);
-                console.log(users);
-                let orderedUsers = users.sort((a, b) => (a.progress < b.progress) ? 1 : -1);
+                let userResp = response.data;
+                let orderedUsers = userResp.sort((a, b) => (a.progress < b.progress) ? 1 : -1);
                 setUsers(orderedUsers);
-                // console.log(users);
+                console.log(users);
             })
             .catch(error => { console.log(error) })
         setMenuState("ladder");
@@ -125,7 +124,7 @@ const Menu = (props) => {
         }
     }
 
-    useEffect(() => { console.log("Useffect called") }, [isLoggedIn], [users])
+    useEffect(() => { console.log("Useffect called") }, [isLoggedIn, users],)
 
 
     return (
