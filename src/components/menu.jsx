@@ -19,8 +19,11 @@ const Menu = (props) => {
     // const [loginScreen, setLoginScreen] = useState(false);
     const [menuState, setMenuState] = useState("notLoggedIn");
     const { register, handleSubmit, errors } = useForm();
-    const [users, setUsers] = useState(fakeUsersData); //will be useState() , when rout works
-    const [currentUser, setCurrentUser] = useState(users[0]);  //init with a fakeUser
+    // const [users, setUsers] = useState(fakeUsersData); //will be useState() , when rout works
+    const [users, setUsers] = useState();
+    // const [currentUser, setCurrentUser] = useState(users[0]);  //init with a fakeUser
+    const [currentUser, setCurrentUser] = useState();
+
 
 
 
@@ -35,6 +38,7 @@ const Menu = (props) => {
 
     const logInSucces = () => {
         setMenuState("loggedIn");
+        //need to set LoggedInContext
     }
 
     const loggingOut = () => {
@@ -43,7 +47,7 @@ const Menu = (props) => {
 
 
     const onLogin = data => {
-        axios.post(`http://localhost:8080/${data.userName}`, axiosConfig)
+        axios.post(`http://localhost:8080/${data.userName}`)
             .then(response => {
                 console.log("response: " + response.data);
                 localStorage.setItem('token', response.data.token);
@@ -58,10 +62,22 @@ const Menu = (props) => {
     }
 
     const onRegister = data => {
-        console.log(data);
-        axios.post(`http://localhost:8080/reg`, data, axiosConfig)
-            .then(response => { console.log(response) })
+        console.log({ data });
+        axios.post(`http://localhost:8080/reg`, data,
+            {
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Headers": "*"
+                }
+            })
+            .then(response => {
+                console.log({ response });
+                // setUsers(response);
+                // console.log({ users });
+            })
             .catch(error => { console.log(error) });
+
     }
 
     const showLadder = () => {
@@ -138,7 +154,7 @@ const Menu = (props) => {
                         <>
                             <form onSubmit={handleSubmit(onRegister)}>
                                 <h1 style={{ color: "white" }}>Register page</h1>
-                                <input type="text" placeholder="Username" name="userName" ref={register({ required: "NAME REQUIRED, YOU MORON" })} />
+                                <input type="text" placeholder="Username" name="username" ref={register({ required: "NAME REQUIRED, YOU MORON" })} />
                                 {errors.userName && <p style={{ color: "orange" }}>{errors.userName.message}</p>}
                                 <input type="text" placeholder="password" name="password" ref={register({ required: "PASSWORD REQUIRED, YOU MORON" })} />
                                 {errors.password && <p style={{ color: "orange" }}>{errors.password.message}</p>}
