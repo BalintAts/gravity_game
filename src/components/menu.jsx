@@ -47,7 +47,8 @@ const Menu = (props) => {
 
 
     const onLogin = data => {
-        axios.post(`http://localhost:8080/${data.userName}`,
+        console.log(data);
+        axios.post(`http://localhost:8080/login`, data,
             {
                 headers: {
                     'Content-Type': 'application/json;charset=UTF-8',
@@ -57,8 +58,9 @@ const Menu = (props) => {
             })
             .then(response => {
                 console.log("response: " + response.data);
-                localStorage.setItem('token', response.data.token);
+                // localStorage.setItem('token', response.data.token);
                 setCurrentUser(response.data);
+                console.log(currentUser);
             })
             .catch(error => { console.log(error) });
         logInSucces();
@@ -107,7 +109,7 @@ const Menu = (props) => {
         ;
     }
 
-    const save = data => {
+    const save = () => {
         axios.put(`//localhost:8080/${currentUser.name}`, currentUser.progress, axiosConfig)  //calling findUser in backend
             .then(response => {
                 console.log(response);
@@ -124,7 +126,7 @@ const Menu = (props) => {
         }
     }
 
-    useEffect(() => { console.log("Useffect called") }, [isLoggedIn, users],)
+    useEffect(() => { console.log("Useffect called") }, [isLoggedIn, users, currentUser],)
 
 
     return (
@@ -182,7 +184,7 @@ const Menu = (props) => {
                     }
                     {menuState === "loggedIn" &&
                         <>
-                            <h1 style={{ color: "white" }}>Logged in</h1>
+                            <h1 style={{ color: "white" }}>{currentUser.userName}</h1>
                             <ul>
                                 <li>
                                     <button onClick={close}>New Game</button>
@@ -204,7 +206,7 @@ const Menu = (props) => {
                     }
                     {menuState === "ladder" &&
                         <>
-                            <Table striped bordered hover style={{ "position": "center" }}>
+                            <Table striped bordered hover style={{ "position": "center", "color": "white", "backgroundColor": "grey" }}>
                                 <th>
                                     <td>Name</td>
                                     <td>Progress</td>
