@@ -20,7 +20,7 @@ const Menu = (props) => {
     const [menuState, setMenuState] = useState("notLoggedIn");
     const { register, handleSubmit, errors } = useForm();
     // const [users, setUsers] = useState(fakeUsersData); //will be useState() , when rout works
-    const [users, setUsers] = useState();
+    const [users, setUsers] = useState(fakeUsersData);
     // const [currentUser, setCurrentUser] = useState(users[0]);  //init with a fakeUser
     const [currentUser, setCurrentUser] = useState();
 
@@ -96,14 +96,16 @@ const Menu = (props) => {
             }
         })
             .then(response => {
-                console.log(response);
-                //  setUsers(response.data);
+                console.log(response.data);
+                setUsers(response.data);
+                console.log(users);
+                let orderedUsers = users.sort((a, b) => (a.progress < b.progress) ? 1 : -1);
+                setUsers(orderedUsers);
+                // console.log(users);
             })
             .catch(error => { console.log(error) })
         setMenuState("ladder");
-        let orderedUsers = users.sort((a, b) => (a.progress < b.progress) ? 1 : -1);
-        setUsers(orderedUsers);
-        console.log(menuState);
+        ;
     }
 
     const save = data => {
@@ -123,7 +125,7 @@ const Menu = (props) => {
         }
     }
 
-    useEffect(() => { }, [isLoggedIn])
+    useEffect(() => { console.log("Useffect called") }, [isLoggedIn], [users])
 
 
     return (

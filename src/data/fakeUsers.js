@@ -1,22 +1,22 @@
 let fakeUsersData =
     [
         {
-            "name": "yyyy",
+            "name": "FAKE USER 1",
             "password": "123",
             "progress": 6
         },
         {
-            "name": "bbbb",
+            "name": "FAKE USER 2",
             "password": "1234",
             "progress": 5
         },
         {
-            "name": "xxxx",
+            "name": "FAKE USER 3",
             "password": "123",
             "progress": 2
         },
         {
-            "name": "qqqq",
+            "name": "FAKE USER 4",
             "password": "1234",
             "progress": 3
         },
