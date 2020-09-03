@@ -48,7 +48,9 @@ const Menu = (props) => {
 
     const onLogin = data => {
         console.log(data);
+
         axios.post(`http://localhost:8080/login`, data,
+
             {
                 headers: {
                     'Content-Type': 'application/json;charset=UTF-8',
@@ -58,8 +60,9 @@ const Menu = (props) => {
             })
             .then(response => {
                 console.log("response: " + response.data);
+                console.log(JSON.stringify(response.data));
                 // localStorage.setItem('token', response.data.token);
-                setCurrentUser(response.data);
+                setCurrentUser(JSON.stringify(response.data));
                 console.log(currentUser);
             })
             .catch(error => { console.log(error) });
@@ -81,8 +84,7 @@ const Menu = (props) => {
                 }
             })
             .then(response => {
-                console.log({ response });
-                // setUsers(response);
+                console.log(response.data);
                 // console.log({ users });
             })
             .catch(error => { console.log(error) });
@@ -157,7 +159,7 @@ const Menu = (props) => {
                             <form onSubmit={handleSubmit(onLogin)}>
                                 <h1 style={{ color: "white" }}>Login Page</h1>
                                 <input type="text" placeholder="Username" name="username" ref={register({ required: "NAME REQUIRED, YOU MORON" })} />
-                                {errors.userName && <p style={{ color: "orange" }}>{errors.userName.message}</p>}
+                                {errors.username && <p style={{ color: "orange" }}>{errors.username.message}</p>}
                                 <input type="submit" />
                             </form>
                             <>
@@ -171,7 +173,7 @@ const Menu = (props) => {
                             <form onSubmit={handleSubmit(onRegister)}>
                                 <h1 style={{ color: "white" }}>Register page</h1>
                                 <input type="text" placeholder="Username" name="username" ref={register({ required: "NAME REQUIRED, YOU MORON" })} />
-                                {errors.userName && <p style={{ color: "orange" }}>{errors.userName.message}</p>}
+                                {errors.username && <p style={{ color: "orange" }}>{errors.username.message}</p>}
                                 <input type="text" placeholder="password" name="password" ref={register({ required: "PASSWORD REQUIRED, YOU MORON" })} />
                                 {errors.password && <p style={{ color: "orange" }}>{errors.password.message}</p>}
                                 <input type="submit" />
@@ -184,7 +186,7 @@ const Menu = (props) => {
                     }
                     {menuState === "loggedIn" &&
                         <>
-                            <h1 style={{ color: "white" }}>{currentUser.userName}</h1>
+                            {/* <h1 style={{ color: "white" }}>{currentUser.username}</h1> */}
                             <ul>
                                 <li>
                                     <button onClick={close}>New Game</button>
