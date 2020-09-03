@@ -128,7 +128,12 @@ const Menu = (props) => {
         }
     }
 
-    useEffect(() => { console.log("Useffect called") }, [isLoggedIn, users, currentUser],)
+    useEffect(() => {
+        console.log("Useffect called")
+
+        currentUser && console.log({ currentUser });
+    },
+        [isLoggedIn, users, currentUser])
 
 
     return (
@@ -209,11 +214,11 @@ const Menu = (props) => {
                     {menuState === "ladder" &&
                         <>
                             <Table striped bordered hover style={{ "position": "center", "color": "white", "backgroundColor": "grey" }}>
-                                <th>
-                                    <td>Name</td>
-                                    <td>Progress</td>
-                                </th>
                                 <tbody>
+                                    <tr>
+                                        <td>Name</td>
+                                        <td>Progress</td>
+                                    </tr>
                                     {users.map((user) => (
                                         <tr>
                                             <td key={user.name}> {user.name} </td>
