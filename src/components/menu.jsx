@@ -10,8 +10,30 @@ import ReactTable from 'react-table';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
 import tokenConfig from '../security/tokenConfig';
-
+import ReactDom from 'react-dom';
 //token only needed for "loadgame"??
+
+
+const MODAL_STYLES = {
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    backgroundColor: '#FFF',
+    padding: '50px',
+    zIndex: 1000
+}
+
+const OVERLAY_STYLES = {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, .7)',
+    zIndex: 1000
+}
+
 
 const Menu = ({ display, onClose }) => {
 
@@ -136,110 +158,112 @@ const Menu = ({ display, onClose }) => {
         [isLoggedIn, users, currentUser])
 
 
-    if (!display) return null;
-    return (
-        // <div className="modal_wrapper">
-        //     <div className="modal_backdrop">
-        <div className="modal_box">
-            {menuState === "notLoggedIn" &&
-                <>
-                    <h1 style={{ color: "white" }}>Not logged in</h1>
-                    <ul>
-                        <li>
-                            <button onClick={onClose}>Play without saving progress</button>
-                        </li>
-                        <li>
-                            <button onClick={loggingIn}>Login</button>
-                        </li>
-                        <li>
-                            <button onClick={registerFrom}>Register to save progress</button>
-                        </li>
-                        <li>
-                            <button onClick={showLadder}>Ladder</button>
-                        </li>
-                    </ul>
-                </>
-            }
-            {menuState === "loggingIn" &&
-                <>
-                    <form onSubmit={handleSubmit(onLogin)}>
-                        <h1 style={{ color: "white" }}>Login Page</h1>
-                        <input type="text" placeholder="Username" name="username" ref={register({ required: "NAME REQUIRED, YOU MORON" })} />
-                        {errors.username && <p style={{ color: "orange" }}>{errors.username.message}</p>}
-                        <input type="submit" />
-                    </form>
-                    <>
-                        <button onClick={goBack}>Back</button>
-                    </>
-                </>
 
-            }
-            {menuState === "registerFrom" &&
-                <div className="box">
-                    <form onSubmit={handleSubmit(onRegister)}>
-                        <h1 style={{ color: "white" }}>Register page</h1>
-                        <p>
+
+    if (!display) return null;
+    return ReactDom.createPortal(
+        <>
+            <div style={OVERLAY_STYLES} />
+            <div style={MODAL_STYLES}>
+                {menuState === "notLoggedIn" &&
+                    <>
+                        <h1 style={{ color: "white" }}>Not logged in</h1>
+                        <ul>
+                            <li>
+                                <button onClick={onClose}>Play without saving progress</button>
+                            </li>
+                            <li>
+                                <button onClick={loggingIn}>Login</button>
+                            </li>
+                            <li>
+                                <button onClick={registerFrom}>Register to save progress</button>
+                            </li>
+                            <li>
+                                <button onClick={showLadder}>Ladder</button>
+                            </li>
+                        </ul>
+                    </>
+                }
+                {menuState === "loggingIn" &&
+                    <>
+                        <form onSubmit={handleSubmit(onLogin)}>
+                            <h1 style={{ color: "white" }}>Login Page</h1>
                             <input type="text" placeholder="Username" name="username" ref={register({ required: "NAME REQUIRED, YOU MORON" })} />
                             {errors.username && <p style={{ color: "orange" }}>{errors.username.message}</p>}
-                        </p>
-                        <p>
-                            <input type="text" placeholder="password" name="password" ref={register({ required: "PASSWORD REQUIRED, YOU MORON" })} />
-                            {errors.password && <p style={{ color: "orange" }}>{errors.password.message}</p>}
-                        </p>
-                        <p>
                             <input type="submit" />
-                        </p>
-                    </form>
+                        </form>
+                        <>
+                            <button onClick={goBack}>Back</button>
+                        </>
+                    </>
+
+                }
+                {menuState === "registerFrom" &&
+                    <div className="box">
+                        <form onSubmit={handleSubmit(onRegister)}>
+                            <h1 style={{ color: "white" }}>Register page</h1>
+                            <p>
+                                <input type="text" placeholder="Username" name="username" ref={register({ required: "NAME REQUIRED, YOU MORON" })} />
+                                {errors.username && <p style={{ color: "orange" }}>{errors.username.message}</p>}
+                            </p>
+                            <p>
+                                <input type="text" placeholder="password" name="password" ref={register({ required: "PASSWORD REQUIRED, YOU MORON" })} />
+                                {errors.password && <p style={{ color: "orange" }}>{errors.password.message}</p>}
+                            </p>
+                            <p>
+                                <input type="submit" />
+                            </p>
+                        </form>
+                        <>
+                            <button onClick={goBack}>Back</button>
+                        </>
+                    </div>
+
+                }
+                {menuState === "loggedIn" &&
                     <>
+                        {/* <h1 style={{ color: "white" }}>{currentUser.username}</h1> */}
+                        <ul>
+                            <li>
+                                <button onClick={onClose}>New Game</button>
+                            </li>
+                            <li>
+                                <button onClick={onClose}>Load game</button>
+                            </li>
+                            <li>
+                                <button onClick={save}>Save game</button>
+                            </li>
+                            <li>
+                                <button onClick={loggingOut}>Log out</button>
+                            </li>
+                            <li>
+                                <button onClick={goBack}>Back</button>
+                            </li>
+                        </ul>
+                    </>
+                }
+                {menuState === "ladder" &&
+                    <>
+                        <Table striped bordered hover style={{ "position": "center", "color": "white", "backgroundColor": "grey" }}>
+                            <tbody>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Progress</td>
+                                </tr>
+                                {users.map((user) => (
+                                    <tr>
+                                        <td key={user.name}> {user.name} </td>
+                                        <td key={user.progress}> {user.progress} </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </Table>
                         <button onClick={goBack}>Back</button>
                     </>
-                </div>
-
-            }
-            {menuState === "loggedIn" &&
-                <>
-                    {/* <h1 style={{ color: "white" }}>{currentUser.username}</h1> */}
-                    <ul>
-                        <li>
-                            <button onClick={onClose}>New Game</button>
-                        </li>
-                        <li>
-                            <button onClick={onClose}>Load game</button>
-                        </li>
-                        <li>
-                            <button onClick={save}>Save game</button>
-                        </li>
-                        <li>
-                            <button onClick={loggingOut}>Log out</button>
-                        </li>
-                        <li>
-                            <button onClick={goBack}>Back</button>
-                        </li>
-                    </ul>
-                </>
-            }
-            {menuState === "ladder" &&
-                <>
-                    <Table striped bordered hover style={{ "position": "center", "color": "white", "backgroundColor": "grey" }}>
-                        <tbody>
-                            <tr>
-                                <td>Name</td>
-                                <td>Progress</td>
-                            </tr>
-                            {users.map((user) => (
-                                <tr>
-                                    <td key={user.name}> {user.name} </td>
-                                    <td key={user.progress}> {user.progress} </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </Table>
-                    <button onClick={goBack}>Back</button>
-                </>
-            }
-        </div>
-        //     </div>
-        // </div >
+                }
+            </div>
+        </>,
+        document.getElementById("portal")
     )
 }
 

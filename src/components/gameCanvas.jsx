@@ -2,12 +2,13 @@ import React, { useRef, useEffect, useState } from 'react'
 import Game from '../gameElements/game';
 import Menu from './menu';
 import { IsLoggedInProvider } from '../contexts/loginContext';
+import ReactDom from 'react-dom';
 
 
 const GameCanvas = () => {
     const canvasRef = useRef(null);
     const [gameState, setGameState] = useState(null);
-    const [displayMenu, setDisplayMenu] = useState(true);
+    const [displayMenu, setDisplayMenu] = useState(false);
     const [paused, setPaused] = useState(false);
 
 
