@@ -102,7 +102,7 @@ const Menu = (props) => {
             .then(response => {
                 console.log(response.data);
                 let userResp = response.data;
-                let orderedUsers = userResp.sort((a, b) => (a.progress < b.progress) ? 1 : -1);
+                let orderedUsers = userResp.sort((a, b) => b.progress - a.progress);
                 setUsers(orderedUsers);
                 console.log(users);
             })
@@ -174,19 +174,25 @@ const Menu = (props) => {
 
                     }
                     {menuState === "registerFrom" &&
-                        <>
+                        <div className="box">
                             <form onSubmit={handleSubmit(onRegister)}>
                                 <h1 style={{ color: "white" }}>Register page</h1>
-                                <input type="text" placeholder="Username" name="username" ref={register({ required: "NAME REQUIRED, YOU MORON" })} />
-                                {errors.username && <p style={{ color: "orange" }}>{errors.username.message}</p>}
-                                <input type="text" placeholder="password" name="password" ref={register({ required: "PASSWORD REQUIRED, YOU MORON" })} />
-                                {errors.password && <p style={{ color: "orange" }}>{errors.password.message}</p>}
-                                <input type="submit" />
+                                <p>
+                                    <input type="text" placeholder="Username" name="username" ref={register({ required: "NAME REQUIRED, YOU MORON" })} />
+                                    {errors.username && <p style={{ color: "orange" }}>{errors.username.message}</p>}
+                                </p>
+                                <p>
+                                    <input type="text" placeholder="password" name="password" ref={register({ required: "PASSWORD REQUIRED, YOU MORON" })} />
+                                    {errors.password && <p style={{ color: "orange" }}>{errors.password.message}</p>}
+                                </p>
+                                <p>
+                                    <input type="submit" />
+                                </p>
                             </form>
                             <>
                                 <button onClick={goBack}>Back</button>
                             </>
-                        </>
+                        </div>
 
                     }
                     {menuState === "loggedIn" &&
@@ -232,7 +238,7 @@ const Menu = (props) => {
                     }
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

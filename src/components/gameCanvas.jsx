@@ -17,7 +17,6 @@ const GameCanvas = () => {
 
     function handleChangeDisplay() {
         setDisplayMenu(false);
-        console.log(displayMenu);
     }
 
     function pause() {
