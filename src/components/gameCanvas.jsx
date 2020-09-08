@@ -137,9 +137,10 @@ const GameCanvas = () => {
                     <canvas id="viewport" ref={canvasRef} />
                 </div>
                 <button onClick={openMenu} style={{ top: 0, right: 0, position: "absolute" }} >Menu</button>
-                {displayMenu &&
-                    <Menu value={displayMenu} onChange={handleChangeDisplay} />
-                }
+                {/* {displayMenu &&
+                    <Menu display={displayMenu} onChange={handleChangeDisplay} />
+                } */}
+                <Menu display={displayMenu} onClose={() => setDisplayMenu(false)} onChange={handleChangeDisplay} />
             </>
         </IsLoggedInProvider>
     )
