@@ -130,7 +130,7 @@ const Menu = ({ display, onClose }) => {
             })
             .catch(error => { console.log(error) })
         setMenuState("ladder");
-        ;
+
     }
 
     const save = () => {
