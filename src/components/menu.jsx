@@ -168,7 +168,7 @@ const Menu = ({ display, onClose }) => {
             <div style={MODAL_STYLES}>
                 {menuState === "notLoggedIn" &&
                     <>
-                        <h1 style={{ color: "white" }}>Not logged in</h1>
+                        {/* <h1 style={{ color: "grey", justifyContent: "center" }}>Not logged in</h1> */}
                         <ul>
                             <li>
                                 <button onClick={onClose}>Play without saving progress</button>

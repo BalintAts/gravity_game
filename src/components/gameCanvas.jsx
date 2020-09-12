@@ -153,15 +153,15 @@ const GameCanvas = () => {
     return (
         <IsLoggedInProvider>
             <>
-                <div tabIndex="0" onKeyDown={handleKeyDown} onKeyUp={handleKeyUp}>
-                    <canvas id="viewport" ref={canvasRef} />
-                </div>
-                <button onClick={openMenu} style={{ top: 0, right: 0, position: "fixed" }} >Menu</button>
-                <Menu display={displayMenu} onClose={() => setDisplayMenu(false)} onChange={handleChangeDisplay} />
                 <img src="/saturn.png" alt="/saturn.png" id="saturn" width="0" height="0"></img>
                 <img src="/jupiter.png" alt="/jupiter.png" id="jupiter" width="0" height="0"></img>
                 <img src="/mars.png" alt="/mars.png" id="mars" width="0" height="0"></img>
                 <img src="/uranus.png" alt="/uranus.png" id="uranus" width="0" height="0"></img>
+                <div tabIndex="0" onKeyDown={handleKeyDown} onKeyUp={handleKeyUp}>
+                    <canvas id="viewport" ref={canvasRef} />
+                </div>
+                <button onClick={openMenu} style={{ top: 30, right: 30, position: "fixed" }} >Menu</button>
+                <Menu display={displayMenu} onClose={() => setDisplayMenu(false)} onChange={handleChangeDisplay} />
 
             </>
         </IsLoggedInProvider>
