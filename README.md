@@ -12,9 +12,9 @@ The goal is to move the spaceship in real time to collect the yellow orbs by gra
     - Progress Ladder (displaying other user's progress in order)
     - Realtime movement, physics
 
-![alt text](src/demoImages/menuDemo.png?raw=true "Title")
+![alt text](src/demoImages/menuDemo.png?raw=true "Menu")
 
-![alt text](src/demoImages/register.png?raw=true "Title")
+![alt text](src/demoImages/register.png?raw=true "Register")
 
 ## Technologies:
     - React
