@@ -12,6 +12,7 @@ import Table from 'react-bootstrap/Table';
 import tokenConfig from '../security/tokenConfig';
 import ReactDom from 'react-dom';
 //token only needed for "loadgame"??
+import buttonFancy from '../styles/buttonFancy.css';
 
 
 const MODAL_STYLES = {
