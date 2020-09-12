@@ -1,7 +1,8 @@
 class GameObject {
 
 
-    constructor(imgSource, x, y, rad, mass, gravitable, collectable, color, visible) {
+    constructor(thing, x, y, rad, mass, gravitable, collectable, color, visible) {
+        this.thing = thing;
         this.posX = x;
         this.posY = y;
         this.rad = rad;
@@ -10,7 +11,6 @@ class GameObject {
         this.color = color;
         this.visible = visible;
         this.mass = mass;
-        this.imgSource = imgSource;
     }
 
     draw(ctx) {

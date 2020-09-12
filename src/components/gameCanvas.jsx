@@ -65,13 +65,33 @@ const GameCanvas = () => {
 
 
         function drawLevelObejcts() {
-            let planet = document.getElementById("planet");
+            let saturn = document.getElementById("saturn");
+            let jupiter = document.getElementById("jupiter");
+            let mars = document.getElementById("mars");
+            let uranus = document.getElementById("uranus");
+
             for (let otherObject of game.level.gameObjects) {
                 ctx.save();
                 if (otherObject.gravitable) {
-                    ctx.drawImage(planet, otherObject.posX - otherObject.rad, otherObject.posY - otherObject.rad, 2 * otherObject.rad, 2 * otherObject.rad);
+                    console.log(otherObject.thing);
+                    switch (otherObject.thing) {
+                        case "saturn":
+                            ctx.drawImage(saturn, otherObject.posX - otherObject.rad, otherObject.posY - otherObject.rad, 2 * otherObject.rad, 2 * otherObject.rad);
+                            break;
+                        case "jupiter":
+                            ctx.drawImage(jupiter, otherObject.posX - otherObject.rad, otherObject.posY - otherObject.rad, 2 * otherObject.rad, 2 * otherObject.rad);
+                            break;
+                        case "uranus":
+                            ctx.drawImage(uranus, otherObject.posX - otherObject.rad, otherObject.posY - otherObject.rad, 2 * otherObject.rad, 2 * otherObject.rad);
+                            break;
+                        case "mars":
+                            ctx.drawImage(mars, otherObject.posX - otherObject.rad, otherObject.posY - otherObject.rad, 2 * otherObject.rad, 2 * otherObject.rad);
+                            break;
+                        default:
+                            ctx.drawImage(saturn, otherObject.posX - otherObject.rad, otherObject.posY - otherObject.rad, 2 * otherObject.rad, 2 * otherObject.rad);
+                    }
                 } else {
-                    otherObject.draw(ctx);
+                    otherObject.draw(ctx);   //different method call, becouse it is not an image, needs refactor when there is an image asset
                 }
                 ctx.restore();
             }
@@ -133,12 +153,16 @@ const GameCanvas = () => {
     return (
         <IsLoggedInProvider>
             <>
-                <img src="/saturn.png" alt="dsdfhsdk" id="planet" width="0" height="0"></img>
                 <div tabIndex="0" onKeyDown={handleKeyDown} onKeyUp={handleKeyUp}>
                     <canvas id="viewport" ref={canvasRef} />
                 </div>
                 <button onClick={openMenu} style={{ top: 0, right: 0, position: "fixed" }} >Menu</button>
                 <Menu display={displayMenu} onClose={() => setDisplayMenu(false)} onChange={handleChangeDisplay} />
+                <img src="/saturn.png" alt="/saturn.png" id="saturn" width="0" height="0"></img>
+                <img src="/jupiter.png" alt="/jupiter.png" id="jupiter" width="0" height="0"></img>
+                <img src="/mars.png" alt="/mars.png" id="mars" width="0" height="0"></img>
+                <img src="/uranus.png" alt="/uranus.png" id="uranus" width="0" height="0"></img>
+
             </>
         </IsLoggedInProvider>
     )

@@ -11,11 +11,12 @@ class Level {
         this.game = game;
         this.scoreToWin = 0;  //reset required score
         for (let data of levelsData[currentLevelNumber]) {
-            this.gameObjects.push(new GameObject(data.imgSource, data.x, data.y, data.radius, data.mass, data.gravitable, data.collectable, data.color, data.visible));
+            this.gameObjects.push(new GameObject(data.thing, data.x, data.y, data.radius, data.mass, data.gravitable, data.collectable, data.color, data.visible));
             if (data.collectable === true) {
                 this.scoreToWin++;  //need to put in the levelData
             }
         }
+        console.log(this.gameObjects);
     }
 }
 
