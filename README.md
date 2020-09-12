@@ -1,6 +1,6 @@
-### Gravity Game
+# Gravity Game
 
-# This is an online video game I am currently working on.
+## This is an online video game I am currently working on.
 
 ![alt text](src/demoImages/demoImageplanet.png?raw=true "Title")
 
