@@ -2,7 +2,7 @@
 
 # This is an online video game I am currently working on.
 
-![alt text](src/demoImages/demoImage.png?raw=true "Title")
+![alt text](src/demoImages/demoImageplanet.png?raw=true "Title")
 
 The goal is to move the spaceship in real time to collect the yellow orbs by gravitating to the planets by pressing space. This can result in interesting trajectories and new kind of gameplay.
 
