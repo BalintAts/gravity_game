@@ -1,10 +1,26 @@
 ### Gravity Game
 
-This project is work in progress.
-
-This is a 2d online videogame, which is being developed in REACT, using HTML5 CANVAS, and plain JAVASCRIPT. 
-I will use SpringBoot for the backend.
+# This is an online video game I am currently working on.
 
 ![alt text](src/demoImages/demoImage.png?raw=true "Title")
 
-The goal is to move the spaceship to collect the yellow orbs by gravitating to the planets by pressing space. This can result in interesting trajectories, and new kind of gameplay.
+The goal is to move the spaceship in real time to collect the yellow orbs by gravitating to the planets by pressing space. This can result in interesting trajectories and new kind of gameplay.
+
+## Main features:
+    - User register/login
+    - Save/Load progress, corresponding to the user
+    - Progress Ladder (displaying other user's progress in order)
+    - Realtime movement, physics
+
+## Technologies:
+    - React
+    - HTML5 Canvas
+    - plain javascript
+    - SpringBoot for the backend.
+
+## Libraries:
+    - axios
+    - bootstrap
+    - react bootstrap
+    - react-hook-form
+    - react table
