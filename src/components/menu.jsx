@@ -86,14 +86,15 @@ const Menu = ({ display, onClose }) => {
                 console.log("response: " + response.data);
                 console.log(JSON.stringify(response.data));
                 logInSucces();
-                setIsLoggedIn(response.data);
+                setIsLoggedIn(response.data.username);
                 // localStorage.setItem('token', response.data.token);
                 setCurrentUser(JSON.stringify(response.data));
                 console.log(currentUser);
+
             })
             .catch(error => { console.log(error) });
 
-        logInSucces();
+
     }
 
     const registerFrom = () => {
@@ -239,6 +240,9 @@ const Menu = ({ display, onClose }) => {
                             </li>
                             <li>
                                 <button onClick={save}>Save game</button>
+                            </li>
+                            <li>
+                                <button onClick={showLadder}>Ladder</button>
                             </li>
                             <li>
                                 <button onClick={loggingOut}>Log out</button>

@@ -1,8 +1,7 @@
 import React, { useRef, useEffect, useState, useContext } from 'react'
 import Game from '../gameElements/game';
 import Menu from './menu';
-import { IsLoggedInProvider } from '../contexts/loginContext';
-import { IsLoggedInContext } from '../contexts/loginContext';
+import { IsLoggedInProvider, IsLoggedInContext } from '../contexts/loginContext';
 import ReactDom from 'react-dom';
 
 
@@ -14,6 +13,7 @@ const GameCanvas = () => {
     // const a = useContext(IsLoggedInContext);
     // console.log(a);
     const [isLoggedin, setIsLoggedin] = useContext(IsLoggedInContext);
+    const [loggedInUser, setLoggedinUser] = useState("");
 
 
     const openMenu = () => {
@@ -42,6 +42,9 @@ const GameCanvas = () => {
         canvas.style.height = `${window.innerHeight}px`;
 
         const ctx = canvas.getContext("2d");
+        console.log("Canvas useEffect called");
+        console.log(isLoggedin);
+        setLoggedinUser(isLoggedin);
 
         function drawHud() {
             ctx.fillStyle = "white";
@@ -133,7 +136,7 @@ const GameCanvas = () => {
         loop();
 
 
-    }, [paused, isLoggedin])
+    }, [paused, isLoggedin, loggedInUser])
 
     const handleKeyDown = e => {
         if (e.keyCode === 32) {
@@ -164,7 +167,7 @@ const GameCanvas = () => {
                 <div tabIndex="0" onKeyDown={handleKeyDown} onKeyUp={handleKeyUp}>
                     <canvas id="viewport" ref={canvasRef} />
                 </div>
-                <p>Logged in as {isLoggedin} </p>
+                <button onClick={openMenu} style={{ top: 30, right: 300, position: "fixed" }} >Logged in as {isLoggedin} </button>
                 <button onClick={openMenu} style={{ top: 30, right: 30, position: "fixed" }} >Menu</button>
                 <Menu display={displayMenu} onClose={() => setDisplayMenu(false)} onChange={handleChangeDisplay} />
 
