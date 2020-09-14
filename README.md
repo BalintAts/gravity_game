@@ -2,7 +2,7 @@
 
 ## This is an online video game I am currently working on.
 
-![alt text](src/demoImages/demoImageplanet.png?raw=true "Title")
+![alt text](src/demoImages/multiPlanet.PNG?raw=true "Title")
 
 The goal is to move the spaceship in real time to collect the yellow orbs by gravitating to the planets by pressing space. This can result in interesting trajectories and new kind of gameplay.
 
@@ -12,9 +12,9 @@ The goal is to move the spaceship in real time to collect the yellow orbs by gra
     - Progress Ladder (displaying other user's progress in order)
     - Realtime movement, physics
 
-![alt text](src/demoImages/menuDemo.png?raw=true "Menu")
+![alt text](src/demoImages/menuDemo.PNG?raw=true "Menu")
 
-![alt text](src/demoImages/register.png?raw=true "Register")
+![alt text](src/demoImages/register.PNG?raw=true "Register")
 
 ## Technologies:
     - React
