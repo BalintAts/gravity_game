@@ -5,6 +5,7 @@ import GameCanvas from './components/gameCanvas';
 import Menu from './components/menu';
 import Axios from 'axios';
 import token from './security/tokenConfig';
+import { IsLoggedInProvider } from './contexts/loginContext';
 
 
 
@@ -15,9 +16,10 @@ function App() {
 
 
   return (
-    <div className="App">
+    <IsLoggedInProvider>
+      <div className="App">
 
-      {/* <header className="App-header">
+        {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -36,9 +38,10 @@ function App() {
 
 
 
-      <GameCanvas />
+        <GameCanvas />
 
-    </div>
+      </div>
+    </IsLoggedInProvider>
   );
 }
 

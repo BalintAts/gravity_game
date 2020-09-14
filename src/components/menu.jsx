@@ -38,6 +38,7 @@ const OVERLAY_STYLES = {
 
 const Menu = ({ display, onClose }) => {
 
+
     const [isLoggedIn, setIsLoggedIn] = useContext(IsLoggedInContext);
     // const [loginScreen, setLoginScreen] = useState(false);
     const [menuState, setMenuState] = useState("notLoggedIn");
@@ -84,11 +85,14 @@ const Menu = ({ display, onClose }) => {
             .then(response => {
                 console.log("response: " + response.data);
                 console.log(JSON.stringify(response.data));
+                logInSucces();
+                setIsLoggedIn(response.data);
                 // localStorage.setItem('token', response.data.token);
                 setCurrentUser(JSON.stringify(response.data));
                 console.log(currentUser);
             })
             .catch(error => { console.log(error) });
+
         logInSucces();
     }
 
@@ -153,8 +157,10 @@ const Menu = ({ display, onClose }) => {
 
     useEffect(() => {
         console.log("Useffect called")
+        console.log(IsLoggedInContext);
 
         currentUser && console.log({ currentUser });
+        console.log(isLoggedIn);
     },
         [isLoggedIn, users, currentUser])
 

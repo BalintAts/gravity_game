@@ -16,7 +16,6 @@ class Level {
                 this.scoreToWin++;  //need to put in the levelData
             }
         }
-        console.log(this.gameObjects);
     }
 }
 

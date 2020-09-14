@@ -1,7 +1,8 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState, useContext } from 'react'
 import Game from '../gameElements/game';
 import Menu from './menu';
 import { IsLoggedInProvider } from '../contexts/loginContext';
+import { IsLoggedInContext } from '../contexts/loginContext';
 import ReactDom from 'react-dom';
 
 
@@ -10,6 +11,9 @@ const GameCanvas = () => {
     const [gameState, setGameState] = useState(null);
     const [displayMenu, setDisplayMenu] = useState(false);
     const [paused, setPaused] = useState(false);
+    // const a = useContext(IsLoggedInContext);
+    // console.log(a);
+    const [isLoggedin, setIsLoggedin] = useContext(IsLoggedInContext);
 
 
     const openMenu = () => {
@@ -73,7 +77,7 @@ const GameCanvas = () => {
             for (let otherObject of game.level.gameObjects) {
                 ctx.save();
                 if (otherObject.gravitable) {
-                    console.log(otherObject.thing);
+
                     switch (otherObject.thing) {
                         case "saturn":
                             ctx.drawImage(saturn, otherObject.posX - otherObject.rad, otherObject.posY - otherObject.rad, 2 * otherObject.rad, 2 * otherObject.rad);
@@ -129,7 +133,7 @@ const GameCanvas = () => {
         loop();
 
 
-    }, [paused])
+    }, [paused, isLoggedin])
 
     const handleKeyDown = e => {
         if (e.keyCode === 32) {
@@ -160,6 +164,7 @@ const GameCanvas = () => {
                 <div tabIndex="0" onKeyDown={handleKeyDown} onKeyUp={handleKeyUp}>
                     <canvas id="viewport" ref={canvasRef} />
                 </div>
+                <p>Logged in as {isLoggedin} </p>
                 <button onClick={openMenu} style={{ top: 30, right: 30, position: "fixed" }} >Menu</button>
                 <Menu display={displayMenu} onClose={() => setDisplayMenu(false)} onChange={handleChangeDisplay} />
 
