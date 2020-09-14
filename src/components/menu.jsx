@@ -88,9 +88,6 @@ const Menu = ({ display, onClose }) => {
                 logInSucces();
                 setIsLoggedIn(response.data.username);
                 // localStorage.setItem('token', response.data.token);
-                setCurrentUser(JSON.stringify(response.data));
-                console.log(currentUser);
-
             })
             .catch(error => { console.log(error) });
 
@@ -156,14 +153,12 @@ const Menu = ({ display, onClose }) => {
         }
     }
 
+    const loadGame = () => { }
+
     useEffect(() => {
         console.log("Useffect called")
-        console.log(IsLoggedInContext);
-
-        currentUser && console.log({ currentUser });
         console.log(isLoggedIn);
-    },
-        [isLoggedIn, users, currentUser])
+    }, [isLoggedIn])
 
 
 

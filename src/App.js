@@ -5,7 +5,7 @@ import GameCanvas from './components/gameCanvas';
 import Menu from './components/menu';
 import Axios from 'axios';
 import token from './security/tokenConfig';
-import { IsLoggedInProvider } from './contexts/loginContext';
+import { IsLoggedInContext, IsLoggedInProvider } from './contexts/loginContext';
 
 
 

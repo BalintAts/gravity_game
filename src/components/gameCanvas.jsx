@@ -3,9 +3,10 @@ import Game from '../gameElements/game';
 import Menu from './menu';
 import { IsLoggedInProvider, IsLoggedInContext } from '../contexts/loginContext';
 import ReactDom from 'react-dom';
+import LoggedInBar from './loggedInBar';
 
 
-const GameCanvas = () => {
+const GameCanvas = props => {
     const canvasRef = useRef(null);
     const [gameState, setGameState] = useState(null);
     const [displayMenu, setDisplayMenu] = useState(false);
@@ -13,7 +14,8 @@ const GameCanvas = () => {
     // const a = useContext(IsLoggedInContext);
     // console.log(a);
     const [isLoggedin, setIsLoggedin] = useContext(IsLoggedInContext);
-    const [loggedInUser, setLoggedinUser] = useState("");
+    // const [levelNumber, setLevelNumber] = useState(props.params.levelNumber);   //for updating this component when game loads cause it doesn't update when context changes
+
 
 
     const openMenu = () => {
@@ -33,6 +35,8 @@ const GameCanvas = () => {
         console.log({ paused });
     }
 
+
+
     useEffect(() => {
 
         const canvas = canvasRef.current;
@@ -44,7 +48,7 @@ const GameCanvas = () => {
         const ctx = canvas.getContext("2d");
         console.log("Canvas useEffect called");
         console.log(isLoggedin);
-        setLoggedinUser(isLoggedin);
+
 
         function drawHud() {
             ctx.fillStyle = "white";
@@ -136,7 +140,7 @@ const GameCanvas = () => {
         loop();
 
 
-    }, [paused, isLoggedin, loggedInUser])
+    }, [isLoggedin, paused])
 
     const handleKeyDown = e => {
         if (e.keyCode === 32) {
@@ -167,7 +171,7 @@ const GameCanvas = () => {
                 <div tabIndex="0" onKeyDown={handleKeyDown} onKeyUp={handleKeyUp}>
                     <canvas id="viewport" ref={canvasRef} />
                 </div>
-                <button onClick={openMenu} style={{ top: 30, right: 300, position: "fixed" }} >Logged in as {isLoggedin} </button>
+                <LoggedInBar style={{ top: 30, right: 300, position: "fixed" }} >Logged in as {isLoggedin} </LoggedInBar>
                 <button onClick={openMenu} style={{ top: 30, right: 30, position: "fixed" }} >Menu</button>
                 <Menu display={displayMenu} onClose={() => setDisplayMenu(false)} onChange={handleChangeDisplay} />
 
