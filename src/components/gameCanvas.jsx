@@ -8,15 +8,13 @@ import LoggedInBar from './loggedInBar';
 
 const GameCanvas = props => {
     const canvasRef = useRef(null);
-    const [gameState, setGameState] = useState(null);
+    const [gameInstance, setGameInstance] = useState(null);
     const [displayMenu, setDisplayMenu] = useState(false);
     const [paused, setPaused] = useState(false);
     // const a = useContext(IsLoggedInContext);
     // console.log(a);
     const [isLoggedin, setIsLoggedin] = useContext(IsLoggedInContext);
     const [currentLevelNumber, setcurrentLevelNumber] = useState(0);   //for updating this component when game loads cause it doesn't update when context changes
-
-
 
     const openMenu = () => {
         setDisplayMenu(true);
@@ -48,6 +46,9 @@ const GameCanvas = props => {
         const ctx = canvas.getContext("2d");
         console.log("Canvas useEffect called");
         console.log(isLoggedin);
+
+
+
 
 
         function drawHud() {
@@ -135,19 +136,24 @@ const GameCanvas = props => {
 
 
         let game = new Game(canvas.width, canvas.height);
-        setGameState(game);
-        game.start(currentLevelNumber);
+
+        setGameInstance(game);
+        game.start();
         loop();
 
 
-    }, [isLoggedin, paused, currentLevelNumber])
+    }, [isLoggedin, paused])
 
     const handleKeyDown = e => {
         if (e.keyCode === 32) {
-            gameState.player.state = 1;
+            // gameInstance.player.state = 1;
+            gameInstance.changeLevel(1)
+            // setcurrentLevelNumber(1);
+            // this.ctx.clearRect(0, 0, 1000, 1000);
+            // forceUpdate();
         }
         if (e.keyCode === 83) {
-            gameState.start();
+            gameInstance.start();
         }
         if (e.keyCode === 80) {
             pause();
@@ -156,7 +162,7 @@ const GameCanvas = props => {
 
 
     const handleKeyUp = e => {
-        gameState.player.state = 0;
+        gameInstance.player.state = 0;
 
     };
 

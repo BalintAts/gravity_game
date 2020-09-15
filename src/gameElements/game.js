@@ -6,12 +6,14 @@ class Game {
 
     user;
     level;
-    currentLevelNumber = 0;
+    // currentLevelNumber = 0;
     player;
+    ctx;
 
-    constructor(width, height) {
+    constructor(width, height, ctx) {
         this.width = width;
         this.height = height;
+        this.ctx = ctx;
     }
 
     submitProgress() {
@@ -19,20 +21,23 @@ class Game {
     }
 
 
-    start(currentLevelNumber) {
+    start() {
         this.player = new Player(200, 400, this);
-        this.changeLevel();
-        this.currentLevelNumber = currentLevelNumber;
+        this.changeLevel(0);
+
     }
 
-    changeLevel() {
-        this.level = new Level(this.currentLevelNumber, this);
+    changeLevel(currentLevelNumber) {
+        this.level = new Level(currentLevelNumber, this);
         this.player.posX = 200;
         this.player.posY = 400;
         this.player.horizontalSpeed = 0;
         this.player.verticalSpeed = 0;
         this.player.score = 0;
         this.player.lives = 3;
+        // if (this.currentLevelNumber !== 0 && this.ctx) {
+        //     this.ctx.clearRect(0, 0, 1000, 1000);
+        // }
     }
 
     checkLevelCompleted() {
