@@ -19,10 +19,10 @@ class Game {
     }
 
 
-    start() {
+    start(currentLevelNumber) {
         this.player = new Player(200, 400, this);
         this.changeLevel();
-        this.currentLevelNumber = 0;
+        this.currentLevelNumber = currentLevelNumber;
     }
 
     changeLevel() {

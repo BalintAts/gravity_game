@@ -14,7 +14,7 @@ const GameCanvas = props => {
     // const a = useContext(IsLoggedInContext);
     // console.log(a);
     const [isLoggedin, setIsLoggedin] = useContext(IsLoggedInContext);
-    // const [levelNumber, setLevelNumber] = useState(props.params.levelNumber);   //for updating this component when game loads cause it doesn't update when context changes
+    const [currentLevelNumber, setcurrentLevelNumber] = useState(0);   //for updating this component when game loads cause it doesn't update when context changes
 
 
 
@@ -136,11 +136,11 @@ const GameCanvas = props => {
 
         let game = new Game(canvas.width, canvas.height);
         setGameState(game);
-        game.start();
+        game.start(currentLevelNumber);
         loop();
 
 
-    }, [isLoggedin, paused])
+    }, [isLoggedin, paused, currentLevelNumber])
 
     const handleKeyDown = e => {
         if (e.keyCode === 32) {
