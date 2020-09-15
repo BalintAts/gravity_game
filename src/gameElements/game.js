@@ -6,7 +6,7 @@ class Game {
 
     user;
     level;
-    // currentLevelNumber = 0;
+    currentLevelNumber = 0;
     player;
     ctx;
 
@@ -27,8 +27,8 @@ class Game {
 
     }
 
-    changeLevel(currentLevelNumber) {
-        this.level = new Level(currentLevelNumber, this);
+    changeLevel() {
+        this.level = new Level(this.currentLevelNumber, this);
         this.player.posX = 200;
         this.player.posY = 400;
         this.player.horizontalSpeed = 0;
@@ -51,7 +51,7 @@ class Game {
     levelCompleted() {
         this.currentLevelNumber++;
         this.submitProgress();
-        this.changeLevel();
+        this.changeLevel(this.currentLevelNumber);
     }
 
     gameOver() {

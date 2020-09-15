@@ -147,10 +147,8 @@ const GameCanvas = props => {
     const handleKeyDown = e => {
         if (e.keyCode === 32) {
             // gameInstance.player.state = 1;
-            gameInstance.changeLevel(1)
-            // setcurrentLevelNumber(1);
-            // this.ctx.clearRect(0, 0, 1000, 1000);
-            // forceUpdate();
+            gameInstance.currentLevelNumber = 1;
+            gameInstance.changeLevel();
         }
         if (e.keyCode === 83) {
             gameInstance.start();
